@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <LinearLayout
+        android:id="@+id/room_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#1b1b1b"
+        android:orientation="vertical" >
+        
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/foot"
+            android:contentDescription="@string/app_name" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/home"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_home"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:text="Home 主页"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/friend"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/room_menu_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="12dp"
+                android:background="#00000000"
+                android:text="Friend 好友"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/startroom"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_room"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="11dp"
+                android:background="#00000000"
+                android:text="Room 房间"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/setting"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="11dp"
+                android:background="#00000000"
+                android:text="Setting 设置"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+	<RelativeLayout
+	    	android:id="@+id/room_content"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent" >
+	
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="40dp"
+	        android:background="@drawable/title" >
+	
+	        <TextView
+	            android:id="@+id/game_final_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="145dp"
+	            android:layout_marginRight="82dp"
+	            android:layout_marginTop="8dp"
+	            android:text="房间"
+	            android:textColor="#fff"
+	            android:textSize="19sp"
+	            android:layout_centerHorizontal="true" />
+	
+	        <ImageView
+	            android:id="@+id/room_page_menu"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_centerVertical="true"
+	            android:layout_marginLeft="14dp"
+	            android:background="#00000000"
+	            android:src="@drawable/menu" />
+	    </RelativeLayout>
+		<TabHost 
+		    android:id="@android:id/tabhost"
+		    android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+		    
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            >
+	            
+		        <TabWidget
+		            android:id="@android:id/tabs"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="40dp"
+		            android:orientation="horizontal" />
+		        
+		        <FrameLayout
+		            android:id="@android:id/tabcontent"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_alignTop="@android:id/tabs"
+		            android:layout_marginTop="48dp" >
+		            
+		            
+		        </FrameLayout>
+		    </RelativeLayout>
+		</TabHost>
+	</RelativeLayout>
+	
+</LinearLayout>

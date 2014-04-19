@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+	<RadioGroup 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#EEEEEE"
+	    android:orientation="vertical" >
+	
+	    	<RadioButton
+	                android:id="@+id/rd_10"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="哪吒"
+	                android:textColor="@drawable/color_textcolor"
+	                android:background="@drawable/color_background"
+	                android:button="@null"/>
+	        <RadioButton
+	                android:id="@+id/rd_30"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="120px"
+	                android:layout_marginTop="-60px"
+	                android:text="金吒"
+	                android:textColor="@drawable/color_textcolor"
+	                android:background="@drawable/color_background"
+	                android:button="@null"/>
+	
+	        <RadioButton
+	            android:id="@+id/rd_40"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:button="@null"
+	            android:text="木吒"
+	            android:textColor="@drawable/color_textcolor"
+	            android:background="@drawable/color_background" />
+	
+	        <RadioButton
+	            android:id="@+id/rd_20"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="-60px"
+	            android:layout_marginLeft="120px"
+	            android:button="@null"
+	            android:text="李狗蛋"
+	            android:textColor="@drawable/color_textcolor"
+	            android:background="@drawable/color_background" />
+	
+	</RadioGroup>
+</LinearLayout>

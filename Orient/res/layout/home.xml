@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <LinearLayout
+        android:id="@+id/home_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="#1b1b1b"
+        android:orientation="vertical" >
+        
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/foot"
+            android:contentDescription="@string/app_name" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/home"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_home"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:text="Home 主页"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/friend"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="12dp"
+                android:background="#00000000"
+                android:text="Friend 好友"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/startroom"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_room"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="11dp"
+                android:background="#00000000"
+                android:text="History 历史"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/setting"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="11dp"
+                android:background="#00000000"
+                android:text="Setting 设置"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        
+    </LinearLayout>
+     
+    <LinearLayout
+        android:id="@+id/home_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        
+		<RelativeLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:gravity="top" >
+		    
+		    <ImageView
+		        android:id="@+id/background"
+		        android:layout_width="match_parent"
+		        android:layout_height="130dp"
+		        android:scaleType="fitXY"
+		        android:src="@drawable/upbackground"
+		        android:contentDescription="@string/app_name" />
+		
+		    <Button
+		        android:id="@+id/menu_btn"
+		        android:layout_width="34dp"
+		        android:layout_height="23dp"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentTop="true"
+		        android:layout_marginLeft="20dp"
+		        android:layout_marginTop="17dp"
+		        android:background="@drawable/menu"
+		        android:visibility="visible" />
+		    
+		    <ImageView
+		        android:id="@+id/photo"
+		        android:layout_width="60dp"
+		        android:layout_height="60dp"
+		        android:layout_alignParentRight="true"
+		        android:layout_marginTop="100dp"
+		        android:padding="3dp"
+		        android:src="@drawable/pic_1"
+		        android:contentDescription="@string/app_name" />
+		    
+		    
+
+		    <TextView
+		        android:id="@+id/HomePage_location"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_toLeftOf="@id/photo"
+		        android:layout_alignBottom="@id/photo"
+		        android:layout_marginBottom="10dp"
+		        android:text="广州大学城中山大学"
+		        android:textColor="#838383"
+		        android:textSize="10sp"
+		        android:textStyle="italic" />
+
+		    <ImageView
+		        android:id="@+id/imageView1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_toLeftOf="@id/HomePage_location"
+		       	android:layout_alignBottom="@id/HomePage_location"
+		       	android:layout_marginRight="5dp"
+		        android:src="@drawable/pin"
+		        android:contentDescription="@string/app_name" />
+		    
+		    <TextView
+		        android:id="@+id/homepage_id"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		       	android:layout_toLeftOf="@id/photo"
+		       	android:layout_alignTop="@id/photo"
+		       	android:layout_marginTop="10dp"
+		       	android:layout_marginRight="30dp"
+		        android:text="Orient_L"
+		        android:textColor="#f8ffd9"
+		        android:textSize="16sp" />
+
+		    
+
+
+		</RelativeLayout>
+
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="fill_parent"
+		    android:orientation="vertical" >
+
+			<ListView
+			    android:id="@+id/home_listView"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:layout_weight="5"
+			    android:descendantFocusability="afterDescendants" >
+
+			</ListView>
+			
+			<ImageButton
+			    android:id="@+id/create_imageButton"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			   android:layout_weight="1"
+			    android:background="#000000"
+			    android:src="@drawable/create_room_button"/>
+			
+		</LinearLayout>
+
+		
+		
+    </LinearLayout>
+
+</LinearLayout>

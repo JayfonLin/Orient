@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="#2D2D2D"
+        android:orientation="vertical" >
+            
+        	<LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Team 4"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar4"
+                    style="@style/progressbarStyle_Horizontal_Red"
+                    android:layout_width="200dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="21dp"
+                    android:max="100"
+                    android:progress="33" />
+
+                <TextView
+                    android:id="@+id/process4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="2dp"
+                    android:text="33%"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            
+        	<LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Team 3"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar3"
+                    style="@style/progressbarStyle_Horizontal_Red"
+                    android:layout_width="200dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="21dp"
+                    android:max="100"
+                    android:progress="88" />
+
+                <TextView
+                    android:id="@+id/process3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="2dp"
+                    android:text="88%"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            
+        	<LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Team 2"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="@style/progressbarStyle_Horizontal_Red"
+                    android:layout_width="200dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="21dp"
+                    android:max="100"
+                    android:progress="66" />
+
+                <TextView
+                    android:id="@+id/process2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="2dp"
+                    android:text="66%"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

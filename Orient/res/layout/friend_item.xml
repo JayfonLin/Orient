@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="75dp"
+	android:paddingLeft="10dp" 
+	android:paddingRight="10dp"
+	android:descendantFocusability="blocksDescendants"
+	>
+
+	<ImageView
+	    android:id="@+id/img"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/team_four_joinn"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:layout_marginRight="10dp" />
+
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_toRightOf="@id/img"
+	    android:orientation="vertical"
+	    android:paddingLeft="8dp" >
+
+	    <TextView
+	        android:id="@+id/name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:layout_weight="0.10"
+	        android:textColor="#000000"
+	        android:textSize="18sp" />
+
+	    <TextView
+	        android:id="@+id/group"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="#000000"
+	        android:textSize="14dp"
+	        android:textStyle="italic" />
+
+	</LinearLayout>
+
+	<ImageButton
+	    android:id="@+id/item_button"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_centerVertical="true"
+	    android:layout_weight="0.10"
+	    android:background="#00000000"
+	    android:focusable="false" />
+
+</RelativeLayout>

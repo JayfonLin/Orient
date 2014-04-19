@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.orient"
+    android:versionCode="1"
+    android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    
+    <!--使用网络功能所需权限  -->  
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE">  
+	</uses-permission>  
+	<uses-permission android:name="android.permission.INTERNET">  
+	</uses-permission>  
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE">  
+	</uses-permission>  
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE">  
+	</uses-permission>  
+	<!-- SDK离线地图和cache功能需要读写外部存储器 -->  
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE">  
+	</uses-permission>  
+	<!-- 获取设置信息和详情页直接拨打电话需要以下权限  -->  
+	<uses-permission android:name="android.permission.READ_PHONE_STATE">  
+	</uses-permission>  
+	<uses-permission android:name="android.permission.CALL_PHONE">  
+	</uses-permission>  
+	<!-- 使用定位功能所需权限,demo已集成百度定位SDK,不使用定位功能可去掉以下6项 -->  
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION">  
+	</uses-permission>  
+	<permission android:name="android.permission.BAIDU_LOCATION_SERVICE">  
+	</permission>  
+	<uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE">  
+	</uses-permission>  
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION">  
+	</uses-permission>  
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION">  
+	</uses-permission>  
+	<uses-permission android:name="android.permission.ACCESS_GPS"/>
+	
+	
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+	<supports-screens android:largeScreens="true"  
+            android:normalScreens="true"  
+            android:smallScreens="true"  
+            android:resizeable="true"  
+            android:anyDensity="true"/>
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>  
+	<uses-permission android:name="android.permission.GET_TASKS"/>
+
+    <application
+        android:name="com.orient.GlobalVarApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+		</service>
+		<activity android:name="com.orient.StartActivity"
+		    android:screenOrientation="portrait"
+		    android:label="@string/app_name">
+		    <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		</activity>
+        <activity
+            android:name="com.orient.LoginActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name">
+		    
+        </activity>
+        <activity android:name=".setRoute"  
+          android:screenOrientation="portrait"  
+          android:configChanges="orientation|keyboardHidden">  
+		</activity>  
+        <activity 
+            android:name="com.orient.RegisterActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+        <activity 
+            android:name="com.orient.HomeActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+         <activity 
+            android:name="com.orient.FriendActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.RoomActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.RoomHistoryActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.RoomCreateActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.RoomJoinActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.GameTeamActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.AbstractActivityGroup"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.CreateGroup"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.HistoryGroup"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.JoinGroup"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.Room_First"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.Room_Second_1_2"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+          <activity 
+            android:name="com.orient.Room_Second_1"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+           <activity 
+            android:name="com.orient.Room_Second_2"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+           <activity 
+            android:name="com.orient.Room_Third"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+           <activity 
+            android:name="com.orient.GameMap"
+             android:screenOrientation="portrait"  
+            android:configChanges="orientation|keyboardHidden"></activity>
+           <activity android:name="com.orient.Game_Final"></activity>
+           <activity 
+            android:name="com.orient.HistoryActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+           <activity 
+            android:name="com.orient.MissonOne"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+           
+    </application>
+   
+</manifest>

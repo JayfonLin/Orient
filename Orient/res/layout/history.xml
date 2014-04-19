@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <LinearLayout
+        android:id="@+id/history_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#1b1b1b"
+        android:orientation="vertical" >
+        
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/foot"
+            android:contentDescription="@string/app_name" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/home"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_home"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:text="Home 主页"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/friend"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="12dp"
+                android:background="#00000000"
+                android:text="Friend 好友"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/startroom"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_room"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="11dp"
+                android:background="#00000000"
+                android:text="History 历史"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/setting"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/menu_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="11dp"
+                android:background="#00000000"
+                android:text="Setting 设置"
+                android:textColor="#C1C1C1"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/history_content"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_gravity="center"
+	    android:background="#F4F3F3"
+	    android:orientation="vertical">
+        
+        <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/title" >
+	
+	        <TextView
+	            android:id="@+id/game_final_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerVertical="true"
+	            android:layout_centerHorizontal="true"
+	            android:text="历史记录"
+	            android:textColor="#fff"
+	            android:textSize="19sp" />
+	
+	        <ImageView
+	            android:id="@+id/history_page_menu"
+	            android:layout_width="34dp"
+	            android:layout_height="23dp"
+	            android:layout_alignParentLeft="true"
+	            android:layout_centerVertical="true"
+	            android:layout_marginLeft="14dp"
+	            android:background="#00000000"
+	            android:src="@drawable/menu" />
+	    </RelativeLayout>
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="center_horizontal"
+	        android:orientation="vertical">
+	        
+	        <LinearLayout   
+			        android:id="@+id/LinearLayout01"   
+			        android:layout_width="fill_parent"   
+			        android:layout_height="fill_parent" >
+	
+		            <ListView
+		                android:id="@+id/android:list"
+		                android:layout_width="fill_parent"
+		                android:layout_height="fill_parent" >
+		            </ListView>
+	  
+			</LinearLayout>
+	    </LinearLayout>	    
+</LinearLayout>
+</LinearLayout>

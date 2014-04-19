@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.orient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title2" >
+
+        <TextView
+            android:id="@+id/room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="维多利亚的宵夜"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/back_home"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:background="@drawable/home_button"
+            android:textColor="#FFF" />
+
+        <Button
+            android:id="@+id/game_member"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/button_member" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/title2" >
+
+        <Button
+            android:id="@+id/game_voice"
+            android:layout_width="180dp"
+            android:layout_height="35dp"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/color_background_voice" />
+
+        <Button
+            android:id="@+id/game_set"
+            android:layout_width="45dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:background="@drawable/color_background_property"
+            android:textColor="#FFF" />
+
+        <Button
+            android:id="@+id/game_dialogue"
+            android:layout_width="45dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/color_background_message" />
+    </RelativeLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapsView"
+        android:layout_width="fill_parent"
+        android:layout_height="360dp"
+        android:layout_above="@+id/relativeLayout1"
+        android:layout_alignParentLeft="true"
+        android:clickable="true" >
+    </com.baidu.mapapi.map.MapView>
+
+    <com.orient.widget.MultiDirectionSlidingDrawer
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/drawer"
+        android:layout_width="fill_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/curentmessage"
+        app:content="@+id/content"
+        app:direction="topToBottom"
+        app:handle="@+id/handle" >
+
+        <include
+            android:id="@id/content"
+            layout="@layout/content" />
+
+        <RelativeLayout
+            android:id="@+id/handle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/title2"
+            android:paddingBottom="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="5dp" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/run" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:text="进度"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar1"
+                    style="@style/progressbarStyle_Horizontal_Red"
+                    android:layout_width="200dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:max="100"
+                    android:progress="0" />
+
+                <TextView
+                    android:id="@+id/process"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="2dp"
+                    android:text="0%"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/linearLayout1"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clock" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:text="用时"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/timeView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="2dp"
+                        android:text="00 : 00 : 00 : 0"
+                        android:textColor="#fff"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="140dp"
+                    android:gravity="right" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/horse" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="2dp"
+                        android:text="快报"
+                        android:textColor="#fff"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </com.orient.widget.MultiDirectionSlidingDrawer>
+
+    <ImageButton
+        android:id="@+id/getlocationbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/pin" />
+
+    <LinearLayout
+        android:id="@+id/curmesitem_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/drawer"
+        android:layout_marginTop="40dp"
+        android:alpha="0.7"
+        android:background="#1c1c1c"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/mes_item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#ededed"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/mes_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#ededed"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/mes_item3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#ededed"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/mes_item4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#ededed"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/mes_item5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#ededed"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/mes_item6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#ededed"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|bottom"
+            android:orientation="vertical"
+            android:paddingBottom="50dp" >
+
+            <Button
+                android:id="@+id/curmes_exit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回"
+                android:textColor="#ededed" 
+                android:background="#00000000"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/curentmessage"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        
+        android:layout_below="@+id/relativeLayout2"
+       
+        android:alpha="0.7"
+        android:background="#1c1c1c"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <TextView
+            android:id="@+id/curmes_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:text="驿马快报： Team3已到达关卡2"
+            android:textColor="#ededed" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/soundlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/voice_chat_phone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+   	<!-- 选中时效果 -->  
+    <item android:state_pressed="true" android:background="#00000000" >
+        <shape>
+			<stroke android:width="1dip" android:color="#B4B2B1" />
+			<corners android:radius="5dp" />
+		</shape>
+	</item>
+			
+ 	<!-- 默认时效果-->  
+	<item android:state_enabled="true" android:background="#2f2f2f" >
+	    <shape>
+			<corners android:radius="8dp" />
+		</shape>
+	</item>
+</selector>

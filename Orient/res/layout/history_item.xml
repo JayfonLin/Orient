@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:descendantFocusability="blocksDescendants" >
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/christmas_button" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/img"
+        android:layout_toRightOf="@+id/img"
+        android:orientation="vertical"
+        android:paddingLeft="8dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="房间 :"
+                android:textColor="#444444"
+                android:textSize="13sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/room_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:paddingLeft="15dp"
+                android:text="Goldaners的小屋"
+                android:textColor="#444444"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始地点 :"
+                android:textColor="#444444"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/begin_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:paddingLeft="5dp"
+                android:text="广州大学城中山大学"
+                android:textColor="#444444"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始时间 :"
+                android:textColor="#444444"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/begin_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:paddingLeft="5dp"
+                android:text="2013/12/14"
+                android:textColor="#444444"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/begin_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:paddingLeft="5dp"
+                android:text="13:00~18:00"
+                android:textColor="#444444"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_alignParentRight="true" >
+
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_marginTop="20dp"
+	        android:layout_toRightOf="@+id/linearLayout1"
+	        android:layout_weight="0.10"
+	        android:paddingLeft="7dp"
+	        android:text="战绩:"
+	        android:textColor="#444444"
+	        android:textSize="8sp" />
+
+	    <TextView
+	        android:id="@+id/rank"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dp"
+	        android:text="3"
+	        android:textColor="#E60012"
+	        android:textSize="15sp"
+	        android:textStyle="bold" />
+
+	    <TextView
+	        android:id="@+id/amount"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dp"
+	        android:text="/10"
+	        android:textColor="#00479D"
+	        android:textSize="15sp"
+	        android:textStyle="bold" />
+
+	</LinearLayout>
+
+	
+
+</RelativeLayout>

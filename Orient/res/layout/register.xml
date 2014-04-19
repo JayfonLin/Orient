@@ -1,0 +1,259 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:padding="5dp"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:textAlignment="center"
+    tools:context=".Sign_Up" >
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="650dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/fillet_white"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp" >
+
+        <TextView
+            android:id="@+id/game_final_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Orient Sign Up"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#ED9D60" >
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_gray"
+            android:clickable="true"
+            android:padding="8dp" >
+
+            <TextView
+                android:id="@+id/TextView10"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="用户名"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/friend_page_searchContent"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:ems="10"
+                android:inputType="textPersonName" >
+
+                <requestFocus />
+            </EditText>
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:checked="true"
+                android:clickable="false"
+                android:focusable="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_gray"
+            android:clickable="true"
+            android:padding="8dp" >
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="密码"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/signUp_password"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_gray"
+            android:clickable="true"
+            android:padding="8dp" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="确认密码"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/signUp_passwordChecked"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_gray"
+            android:clickable="true"
+            android:padding="8dp" >
+
+            <TextView
+                android:id="@+id/TextView06"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="昵称"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/signUp_nickname"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_gray"
+            android:clickable="true"
+            android:padding="8dp" >
+
+            <TextView
+                android:id="@+id/TextView08"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="性别"
+                android:textSize="12sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/signUp_gender_1"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:text="男"
+                    android:textColor="#464646"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/signUp_gender_2"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:text="女"
+                    android:textColor="#464646"
+                    android:textSize="12sp" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_gray"
+            android:clickable="true"
+            android:padding="8dp" >
+
+            <TextView
+                android:id="@+id/TextView12"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="手机"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/signUp_phoneNumber"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:ems="10"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_gray"
+            android:clickable="true"
+            android:padding="8dp" >
+
+            <TextView
+                android:id="@+id/TextView13"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="头像"
+                android:textColor="#363636"
+                android:textSize="12sp" />
+
+            <ImageButton
+                android:id="@+id/team_four_joinn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="13dp"
+                android:background="#00000000"
+                android:src="@drawable/user_logo"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/sign_up_button_1"
+            android:height="35dp"
+            android:padding="0dp"
+            android:text="确认"
+            android:textAlignment="gravity"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
