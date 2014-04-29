@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 import android.R.integer;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,12 +18,12 @@ import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
 public class GameMissionOverlay extends ItemizedOverlay<OverlayItem> {  
-    //ÓÃMapView¹¹ÔìItemizedOverlay  
+    //ç”¨MapViewæ„é€ ItemizedOverlay  
     public GameMissionOverlay(Drawable mark,MapView mapView){  
             super(mark,mapView);  
     }  
     protected boolean onTap(final int index) {  
-        //ÔÚ´Ë´¦Àíitemµã»÷ÊÂ¼ş  
+        //åœ¨æ­¤å¤„ç†itemç‚¹å‡»äº‹ä»¶  
     	final OverlayItem item = getItem(index);
     	//Toast.makeText(GameMap.context, item.getTitle(), 2000).show();
     	if(item.getTitle()=="mission"){
@@ -36,7 +36,7 @@ public class GameMissionOverlay extends ItemizedOverlay<OverlayItem> {
     				missionpos.getLatitudeE6()/1e6,
     				missionpos.getLongitudeE6()/1e6)>=300.0)
     		{
-    			Toast.makeText(GameMap.context, "»¹Ã»×ßµ½ÄÇÀïÅ¶£¬¿ì¿ì¼ÓÓÍ£¡", 1000).show();
+    			Toast.makeText(GameMap.context, "è¿˜æ²¡èµ°åˆ°é‚£é‡Œå“¦ï¼Œå¿«å¿«åŠ æ²¹ï¼", 1000).show();
     			return false;
     		}
     		
@@ -67,8 +67,8 @@ public class GameMissionOverlay extends ItemizedOverlay<OverlayItem> {
 					GameMap.context.mHandler.sendMessage(msg);
 						if(GameMap.context.missionnum==0){
 							
-							System.out.println("¹ş¹ş¹ş¹ş¹ş¹ş¹ş¹ş¹ş¹ş¹ş¹ş");
-							new AlertDialog.Builder(GameMap.context).setMessage("´³¹ØÍê³É£¡").setNegativeButton("È·¶¨", new DialogInterface.OnClickListener() {
+							System.out.println("å“ˆå“ˆå“ˆå“ˆå“ˆå“ˆå“ˆå“ˆå“ˆå“ˆå“ˆå“ˆ");
+							new AlertDialog.Builder(GameMap.context).setMessage("é—¯å…³å®Œæˆï¼").setNegativeButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 								
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
@@ -90,7 +90,7 @@ public class GameMissionOverlay extends ItemizedOverlay<OverlayItem> {
         return true;  
     }  
     
-  //¼ÆËã¾àÀë
+  //è®¡ç®—è·ç¦»
   		static double DEF_PI = 3.14159265359; // PI
   		static double DEF_2PI= 6.28318530712; // 2*PI
   		static double DEF_PI180= 0.01745329252; // PI/180.0
@@ -100,21 +100,21 @@ public class GameMissionOverlay extends ItemizedOverlay<OverlayItem> {
   			double ew1, ns1, ew2, ns2;
   			double dx, dy, dew;
   			double distance;
-  			// ½Ç¶È×ª»»Îª»¡¶È
+  			// è§’åº¦è½¬æ¢ä¸ºå¼§åº¦
   			ew1 = lon1 * DEF_PI180;
   			ns1 = lat1 * DEF_PI180;
   			ew2 = lon2 * DEF_PI180;
   			ns2 = lat2 * DEF_PI180;
-  			// ¾­¶È²î
+  			// ç»åº¦å·®
   			dew = ew1 - ew2;
-  			// Èô¿ç¶«¾­ºÍÎ÷¾­180 ¶È£¬½øĞĞµ÷Õû
+  			// è‹¥è·¨ä¸œç»å’Œè¥¿ç»180 åº¦ï¼Œè¿›è¡Œè°ƒæ•´
   			if (dew > DEF_PI)
   			dew = DEF_2PI - dew;
   			else if (dew < -DEF_PI)
   			dew = DEF_2PI + dew;
-  			dx = DEF_R * Math.cos(ns1) * dew; // ¶«Î÷·½Ïò³¤¶È(ÔÚÎ³¶ÈÈ¦ÉÏµÄÍ¶Ó°³¤¶È)
-  			dy = DEF_R * (ns1 - ns2); // ÄÏ±±·½Ïò³¤¶È(ÔÚ¾­¶ÈÈ¦ÉÏµÄÍ¶Ó°³¤¶È)
-  			// ¹´¹É¶¨ÀíÇóĞ±±ß³¤
+  			dx = DEF_R * Math.cos(ns1) * dew; // ä¸œè¥¿æ–¹å‘é•¿åº¦(åœ¨çº¬åº¦åœˆä¸Šçš„æŠ•å½±é•¿åº¦)
+  			dy = DEF_R * (ns1 - ns2); // å—åŒ—æ–¹å‘é•¿åº¦(åœ¨ç»åº¦åœˆä¸Šçš„æŠ•å½±é•¿åº¦)
+  			// å‹¾è‚¡å®šç†æ±‚æ–œè¾¹é•¿
   			distance = Math.sqrt(dx * dx + dy * dy);
   			return distance;
   		}
@@ -122,19 +122,19 @@ public class GameMissionOverlay extends ItemizedOverlay<OverlayItem> {
   		{
   			double ew1, ns1, ew2, ns2;
   			double distance;
-  			// ½Ç¶È×ª»»Îª»¡¶È
+  			// è§’åº¦è½¬æ¢ä¸ºå¼§åº¦
   			ew1 = lon1 * DEF_PI180;
   			ns1 = lat1 * DEF_PI180;
   			ew2 = lon2 * DEF_PI180;
   			ns2 = lat2 * DEF_PI180;
-  			// Çó´óÔ²ÁÓ»¡ÓëÇòĞÄËù¼ĞµÄ½Ç(»¡¶È)
+  			// æ±‚å¤§åœ†åŠ£å¼§ä¸çƒå¿ƒæ‰€å¤¹çš„è§’(å¼§åº¦)
   			distance = Math.sin(ns1) * Math.sin(ns2) + Math.cos(ns1) * Math.cos(ns2) * Math.cos(ew1 - ew2);
-  			// µ÷Õûµ½[-1..1]·¶Î§ÄÚ£¬±ÜÃâÒç³ö
+  			// è°ƒæ•´åˆ°[-1..1]èŒƒå›´å†…ï¼Œé¿å…æº¢å‡º
   			if (distance > 1.0)
   			     distance = 1.0;
   			else if (distance < -1.0)
   			      distance = -1.0;
-  			// Çó´óÔ²ÁÓ»¡³¤¶È
+  			// æ±‚å¤§åœ†åŠ£å¼§é•¿åº¦
   			distance = DEF_R * Math.acos(distance);
   			return distance;
   		}
@@ -142,7 +142,7 @@ public class GameMissionOverlay extends ItemizedOverlay<OverlayItem> {
     
     
 //        public boolean onTap(GeoPoint pt, MapView mapView){  
-//                //ÔÚ´Ë´¦ÀíMapViewµÄµã»÷ÊÂ¼ş£¬µ±·µ»Ø trueÊ±  
+//                //åœ¨æ­¤å¤„ç†MapViewçš„ç‚¹å‡»äº‹ä»¶ï¼Œå½“è¿”å› trueæ—¶  
 //        		//Toast.makeText(Room_Second_1_2.context, pt.toString(), 3000).show();
 //                super.onTap(pt,mapView);  
 //                return false;  

@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 
 import com.network.GetRoute;
@@ -50,25 +50,25 @@ public class Room_Second_2 extends Activity {
 		setContentView(R.layout.room_second_2);
 		gva = (GlobalVarApplication)getApplication();
 		dialog = new ProgressDialog(context);
-        //ÉèÖÃ½ø¶ÈÌõ·ç¸ñ£¬·ç¸ñÎªÔ²ĞÎ£¬Ğı×ªµÄ
+        //è®¾ç½®è¿›åº¦æ¡é£æ ¼ï¼Œé£æ ¼ä¸ºåœ†å½¢ï¼Œæ—‹è½¬çš„
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        //ÉèÖÃProgressDialog±êÌâ
-        dialog.setTitle("ÑûÇë");
-        //ÉèÖÃProgressDialogÌáÊ¾ĞÅÏ¢
-        dialog.setMessage("ÕıÔÚ·¢ËÍÑûÇë");
-        //ÉèÖÃProgressDialgµÄ½ø¶ÈÌõÊÇ·ñ²»Ã÷È·
+        //è®¾ç½®ProgressDialogæ ‡é¢˜
+        dialog.setTitle("é‚€è¯·");
+        //è®¾ç½®ProgressDialogæç¤ºä¿¡æ¯
+        dialog.setMessage("æ­£åœ¨å‘é€é‚€è¯·");
+        //è®¾ç½®ProgressDialgçš„è¿›åº¦æ¡æ˜¯å¦ä¸æ˜ç¡®
         dialog.setIndeterminate(false);
-        //ÉèÖÃProgressDialogÊÇ·ñ¿ÉÒÔ°´ÍË»Ø¼üÈ¡Ïû
+        //è®¾ç½®ProgressDialogæ˜¯å¦å¯ä»¥æŒ‰é€€å›é”®å–æ¶ˆ
         dialog.setCancelable(true);
-        //ÉèÖÃProgressDialogµÄÒ»¸öButton
-        dialog.setButton("·µ»Ø", new DialogInterface.OnClickListener(){
+        //è®¾ç½®ProgressDialogçš„ä¸€ä¸ªButton
+        dialog.setButton("è¿”å›", new DialogInterface.OnClickListener(){
         	public void onClick(DialogInterface pDialog, int i){
-        		//µã»÷£¬È¡Ïû¶Ô»°¿ò
+        		//ç‚¹å‡»ï¼Œå–æ¶ˆå¯¹è¯æ¡†
         		dialog.cancel();
         		inviteHandler.removeCallbacks(r);
         	}
         });
-		//´«µİ·¿¼äÃû×Ö
+		//ä¼ é€’æˆ¿é—´åå­—
 		Intent intent = getIntent();
 		roomNameString = intent.getStringExtra("roomName");
 		routeid = intent.getIntExtra("Routeid", 0);
@@ -116,19 +116,19 @@ public class Room_Second_2 extends Activity {
 				inviteHandler.postDelayed(r, 3000);
 			}else if (response.equalsIgnoreCase("not login")){
 				dialog.cancel();
-				Toast.makeText(gva.context, "Äú»¹Ã»ÓĞµÇÂ¼£¬ÇëÏÈµÇÂ¼", Toast.LENGTH_SHORT).show();
+				Toast.makeText(gva.context, "æ‚¨è¿˜æ²¡æœ‰ç™»å½•ï¼Œè¯·å…ˆç™»å½•", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(Room_Second_2.this, LoginActivity.class);
 				startActivity(intent);
 				SysApplication.getInstance().exit();
 			}else if (response.equalsIgnoreCase("point error")){
 				dialog.cancel();
-				Toast.makeText(context, "¹Ø¿¨ĞÅÏ¢²»È«£¬Çë·µ»ØÉÏ²ãÖØĞÂÉèÖÃ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "å…³å¡ä¿¡æ¯ä¸å…¨ï¼Œè¯·è¿”å›ä¸Šå±‚é‡æ–°è®¾ç½®", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(context, Room_Second_1_2.class);
 				startActivity(intent);
 				SysApplication.getInstance().exit();
 			}else if (response.equalsIgnoreCase("upload success")){
 				dialog.cancel();
-				Toast.makeText(context, "Â·Ïß³É¹¦ÉÏ´«", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "è·¯çº¿æˆåŠŸä¸Šä¼ ", Toast.LENGTH_SHORT).show();
 				//invite();
 				//getRemoteRouteById(gva.playRouteId);
 				Intent intent = new Intent();
@@ -139,7 +139,7 @@ public class Room_Second_2 extends Activity {
 				SysApplication.getInstance().exit();
 			}else if (response.equalsIgnoreCase("network error")){
 				dialog.cancel();
-				Toast.makeText(context, "ÍøÂçĞÅºÅ²î£¬ÇëÖØĞÂÑûÇë", 
+				Toast.makeText(context, "ç½‘ç»œä¿¡å·å·®ï¼Œè¯·é‡æ–°é‚€è¯·", 
 						Toast.LENGTH_LONG).show();
 				reTry = true;
 			}

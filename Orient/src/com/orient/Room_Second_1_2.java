@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 import android.R.integer;
 import android.app.Activity;  
 import android.app.AlertDialog;
@@ -69,7 +69,7 @@ public class Room_Second_1_2 extends Activity {
 		mBMapMan.init("Kbe7fy7M05PhdOboeeRkkibv", null);
 		setContentView(R.layout.room_second_1_2);
 		
-		//´«µİ·¿¼äÃû×Ö
+		//ä¼ é€’æˆ¿é—´åå­—
 		Intent intent = getIntent();
 		roomNameString = intent.getStringExtra("roomName");
 		numpergroup = intent.getIntExtra("numpergroup",0);
@@ -79,18 +79,18 @@ public class Room_Second_1_2 extends Activity {
 		
 		mMapView=(MapView)findViewById(R.id.bmapsView);  
 		mMapView.setBuiltInZoomControls(false);  
-		//ÉèÖÃÆôÓÃÄÚÖÃµÄËõ·Å¿Ø¼ş  
+		//è®¾ç½®å¯ç”¨å†…ç½®çš„ç¼©æ”¾æ§ä»¶  
 		mMapController=mMapView.getController();  
-		// µÃµ½mMapViewµÄ¿ØÖÆÈ¨,¿ÉÒÔÓÃËü¿ØÖÆºÍÇı¶¯Æ½ÒÆºÍËõ·Å  
+		// å¾—åˆ°mMapViewçš„æ§åˆ¶æƒ,å¯ä»¥ç”¨å®ƒæ§åˆ¶å’Œé©±åŠ¨å¹³ç§»å’Œç¼©æ”¾  
 		context = this;
 		Drawable mark = getResources().getDrawable(R.drawable.myposition_big_shine);
 		myposOverlay = new MyLocationOverlay(mMapView);
 		myposOverlay.setMarker(mark);
 		mMapView.getOverlays().add(myposOverlay);
 		myListener = new _MyLocationListener();
-		mLocationClient = new LocationClient(getApplicationContext());     //ÉùÃ÷LocationClientÀà
+		mLocationClient = new LocationClient(getApplicationContext());     //å£°æ˜LocationClientç±»
 		mLocationClient.setAK("90ehkP9tBULpKYG8rbwXffjG");
-	    mLocationClient.registerLocationListener( myListener );    //×¢²á¼àÌıº¯Êı
+	    mLocationClient.registerLocationListener( myListener );    //æ³¨å†Œç›‘å¬å‡½æ•°
 		
 		mark = getResources().getDrawable(R.drawable.nextmission);
 		missionOverlay = new setRouteOverlay(mark, mMapView);
@@ -101,28 +101,28 @@ public class Room_Second_1_2 extends Activity {
 		mMapView.getOverlays().add(gettogetherOverlay);
 		getlocationbtn = (ImageButton)findViewById(R.id.getlocationbtn);
 		isgettogetherposset = false;
-		mMapController.setZoom(18);//ÉèÖÃµØÍ¼zoom¼¶±ğ
+		mMapController.setZoom(18);//è®¾ç½®åœ°å›¾zoomçº§åˆ«
 		mMapController.setOverlooking(-37);
 		
 		MKMapTouchListener mapTouchListener = new MKMapTouchListener(){  
 	        @Override  
 	        public void onMapClick(GeoPoint point) {  
-	            //ÔÚ´Ë´¦ÀíµØÍ¼µ¥»÷ÊÂ¼ş  
+	            //åœ¨æ­¤å¤„ç†åœ°å›¾å•å‡»äº‹ä»¶  
 	        	//Toast.makeText(Room_Second_1_2.context, point.toString(), 3000).show();
 	        	
 	        }  
 	  
 	        @Override  
 	        public void onMapDoubleClick(GeoPoint point) {  
-	            //ÔÚ´Ë´¦ÀíµØÍ¼Ë«»÷ÊÂ¼ş  
+	            //åœ¨æ­¤å¤„ç†åœ°å›¾åŒå‡»äº‹ä»¶  
 	        }  
 	  
 	        @Override  
 	        public void onMapLongClick(final GeoPoint point) {  
-	            //ÔÚ´Ë´¦ÀíµØÍ¼³¤°´ÊÂ¼ş   
-	        	String[] string = !isgettogetherposset?new String[]{"ÉèÖÃÕÙ¼¯µØµã","È¡Ïû"}: new String[]{"ÉèÖÃ¹Ø¿¨","È¡Ïû"};
+	            //åœ¨æ­¤å¤„ç†åœ°å›¾é•¿æŒ‰äº‹ä»¶   
+	        	String[] string = !isgettogetherposset?new String[]{"è®¾ç½®å¬é›†åœ°ç‚¹","å–æ¶ˆ"}: new String[]{"è®¾ç½®å…³å¡","å–æ¶ˆ"};
 	        	//Toast.makeText(Room_Second_1_2.this.getParent(), point.toString(), 3000).show();
-	        	//ÕâÀïÒª×¢ÒâÊÇµÚ¶ş²ã£¬ÓĞÁ½²ãparentÒªget£¡£¡£¡£¡£¡£¡
+	        	//è¿™é‡Œè¦æ³¨æ„æ˜¯ç¬¬äºŒå±‚ï¼Œæœ‰ä¸¤å±‚parentè¦getï¼ï¼ï¼ï¼ï¼ï¼
 	        	new AlertDialog.Builder(Room_Second_1_2.this).setItems(string, new DialogInterface.OnClickListener() {
 					
 					@Override
@@ -158,7 +158,7 @@ public class Room_Second_1_2 extends Activity {
 	    };  
 	    mMapView.regMapTouchListner(mapTouchListener);  
 	    
-	    //¡°ÉÏÒ»²½¡±°´Å¥»áµ¼ÖÂÒ³Ãæ»ìÂÒ£¬ËùÒÔÒÑ¾­È¥µô£¬´úÂëÔİÊ±²»¸Ä¶¯
+	    //â€œä¸Šä¸€æ­¥â€æŒ‰é’®ä¼šå¯¼è‡´é¡µé¢æ··ä¹±ï¼Œæ‰€ä»¥å·²ç»å»æ‰ï¼Œä»£ç æš‚æ—¶ä¸æ”¹åŠ¨
 //		back = (ImageButton) findViewById(R.id.Back);
 //		back.setOnClickListener(new OnClickListener() {
 //			
@@ -177,7 +177,7 @@ public class Room_Second_1_2 extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(missionOverlay.size()==0||gettogetherOverlay.size()==0){
-					new AlertDialog.Builder(context).setMessage("ÖÁÉÙÉèÖÃÆğÊ¼µØµãºÍÒ»¸ö¹Ø¿¨").setPositiveButton("È·¶¨", null).create().show();
+					new AlertDialog.Builder(context).setMessage("è‡³å°‘è®¾ç½®èµ·å§‹åœ°ç‚¹å’Œä¸€ä¸ªå…³å¡").setPositiveButton("ç¡®å®š", null).create().show();
 					return;
 				}
 				SQLApi sqlApi = new SQLApi(getApplicationContext());
@@ -216,13 +216,13 @@ public class Room_Second_1_2 extends Activity {
 		
 		LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true);
-		option.setAddrType("all");//·µ»ØµÄ¶¨Î»½á¹û°üº¬µØÖ·ĞÅÏ¢
-		option.setCoorType("bd09ll");//·µ»ØµÄ¶¨Î»½á¹ûÊÇ°Ù¶È¾­Î³¶È,Ä¬ÈÏÖµgcj02
-		option.setScanSpan(0);//ÉèÖÃ·¢Æğ¶¨Î»ÇëÇóµÄ¼ä¸ôÊ±¼äÎª5000ms
-		option.disableCache(false);//½ûÖ¹ÆôÓÃ»º´æ¶¨Î»
-		//option.setPoiNumber(5);    //×î¶à·µ»ØPOI¸öÊı   
-		//option.setPoiDistance(1000); //poi²éÑ¯¾àÀë        
-		//option.setPoiExtraInfo(true); //ÊÇ·ñĞèÒªPOIµÄµç»°ºÍµØÖ·µÈÏêÏ¸ĞÅÏ¢ 
+		option.setAddrType("all");//è¿”å›çš„å®šä½ç»“æœåŒ…å«åœ°å€ä¿¡æ¯
+		option.setCoorType("bd09ll");//è¿”å›çš„å®šä½ç»“æœæ˜¯ç™¾åº¦ç»çº¬åº¦,é»˜è®¤å€¼gcj02
+		option.setScanSpan(0);//è®¾ç½®å‘èµ·å®šä½è¯·æ±‚çš„é—´éš”æ—¶é—´ä¸º5000ms
+		option.disableCache(false);//ç¦æ­¢å¯ç”¨ç¼“å­˜å®šä½
+		//option.setPoiNumber(5);    //æœ€å¤šè¿”å›POIä¸ªæ•°   
+		//option.setPoiDistance(1000); //poiæŸ¥è¯¢è·ç¦»        
+		//option.setPoiExtraInfo(true); //æ˜¯å¦éœ€è¦POIçš„ç”µè¯å’Œåœ°å€ç­‰è¯¦ç»†ä¿¡æ¯ 
 		
 		mLocationClient.setLocOption(option);
 
@@ -233,7 +233,7 @@ public class Room_Second_1_2 extends Activity {
 			if(mLocationClient != null && mLocationClient.isStarted())
 				mLocationClient.requestLocation();
 //			else 
-//				Toast.makeText(GameMap.context,"ÔÚÏßÇëÇóÊ§°Ü£¬Ã»¿ªGPS£¿", 2000).show();
+//				Toast.makeText(GameMap.context,"åœ¨çº¿è¯·æ±‚å¤±è´¥ï¼Œæ²¡å¼€GPSï¼Ÿ", 2000).show();
 		}else{
 			if (mLocationClient != null && mLocationClient.isStarted())
 				mLocationClient.requestOfflineLocation();
@@ -255,11 +255,11 @@ public class Room_Second_1_2 extends Activity {
 	    			
 	    			mMapController.animateTo(new GeoPoint((int)(locData.latitude*1e6),  
 	    					(int)(locData.longitude* 1e6)));
-	    			mMapController.setZoom(18);//ÉèÖÃµØÍ¼zoom¼¶±ğ
+	    			mMapController.setZoom(18);//è®¾ç½®åœ°å›¾zoomçº§åˆ«
 	    			mMapController.setOverlooking(-37);
 	    			mMapView.refresh();
 	    		}else {
-					Toast.makeText(context, "Å¬Á¦¶¨Î»ing...", 2000).show();
+					Toast.makeText(context, "åŠªåŠ›å®šä½ing...", 2000).show();
 				}
 	    	}
 		};
@@ -277,8 +277,8 @@ public class Room_Second_1_2 extends Activity {
 					if(mLocationClient != null && mLocationClient.isStarted())
 						mLocationClient.requestLocation();
 					else 
-//						Toast.makeText(GameMap.context,"ÔÚÏßÇëÇóÊ§°Ü£¬Ã»¿ªGPS£¿", 2000).show();
-						Toast.makeText(GameMap.context,"ÔÚÏßÇëÇóÊ§°Ü£¬Ã»¿ªGPS£¿", Toast.LENGTH_SHORT).show();
+//						Toast.makeText(GameMap.context,"åœ¨çº¿è¯·æ±‚å¤±è´¥ï¼Œæ²¡å¼€GPSï¼Ÿ", 2000).show();
+						Toast.makeText(GameMap.context,"åœ¨çº¿è¯·æ±‚å¤±è´¥ï¼Œæ²¡å¼€GPSï¼Ÿ", Toast.LENGTH_SHORT).show();
 				}else{
 					if (mLocationClient != null && mLocationClient.isStarted())
 						mLocationClient.requestOfflineLocation();
@@ -294,9 +294,9 @@ public class Room_Second_1_2 extends Activity {
 //		myposOverlay.removeAll();
 //		myposOverlay.addItem(myposItem);
 //		mMapView.refresh();
-//		//ÓÃ¸ø¶¨µÄ¾­Î³¶È¹¹ÔìÒ»¸öGeoPoint£¬µ¥Î»ÊÇÎ¢¶È (¶È * 1E6)  
-//		mMapController.setCenter(point);//ÉèÖÃµØÍ¼ÖĞĞÄµã  
-//		mMapController.setZoom(18);//ÉèÖÃµØÍ¼zoom¼¶±ğ
+//		//ç”¨ç»™å®šçš„ç»çº¬åº¦æ„é€ ä¸€ä¸ªGeoPointï¼Œå•ä½æ˜¯å¾®åº¦ (åº¦ * 1E6)  
+//		mMapController.setCenter(point);//è®¾ç½®åœ°å›¾ä¸­å¿ƒç‚¹  
+//		mMapController.setZoom(18);//è®¾ç½®åœ°å›¾zoomçº§åˆ«
 //		mMapController.setOverlooking(-37);
 		super.onStart();
 	};

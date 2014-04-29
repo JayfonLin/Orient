@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 public class Room_First extends FragmentActivity {
     @Override
     protected void onCreate(Bundle arg0) {
-    	// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+    	// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
     	super.onCreate(arg0);
     	setContentView(R.layout.room_first);
     }

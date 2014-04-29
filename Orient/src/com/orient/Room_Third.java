@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 
 import android.app.AlertDialog;
@@ -19,7 +19,7 @@ public class Room_Third extends FragmentActivity implements OnTouchListener {
 	ImageButton joinButton;
     @Override
     protected void onCreate(Bundle arg0) {
-    	// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+    	// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
     	super.onCreate(arg0);
     	setContentView(R.layout.room_third);
     	
@@ -30,7 +30,7 @@ public class Room_Third extends FragmentActivity implements OnTouchListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				//ÏÈÌáÊ¾£¬È·¶¨ºó¼ÓÈë·¿¼ä
+				//å…ˆæç¤ºï¼Œç¡®å®šååŠ å…¥æˆ¿é—´
 				AlertDialog.Builder builder = new AlertDialog.Builder(Room_Third.this.getParent());
 				View view = LayoutInflater.from(Room_Third.this.getParent()).inflate(R.layout.prompt,null);
 				builder.setView(view);
@@ -47,7 +47,7 @@ public class Room_Third extends FragmentActivity implements OnTouchListener {
 				((Button)view.findViewById(R.id.prompt_confirm)).setOnClickListener(new View.OnClickListener() {	
 					@Override
 					public void onClick(View v) {
-						//Ìø×ªµ½Ö÷Ò³
+						//è·³è½¬åˆ°ä¸»é¡µ
 						Intent intent = new Intent();
 						intent.setClass(Room_Third.this, GameTeamActivity.class);
 						startActivity(intent);

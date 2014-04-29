@@ -1,4 +1,4 @@
-package com.constant;
+﻿package com.constant;
 
 public class Constant {
 	public static final String URL = "http://1.orientgoldanrs.sinaapp.com/";

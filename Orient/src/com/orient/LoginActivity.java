@@ -1,8 +1,7 @@
-package com.orient;
+ï»¿package com.orient;
 
 import com.baidu.location.r;
 import com.constant.Constant;
-import com.database.WriteSimpleInfoDB;
 import com.network.Login;
 import com.network.Register;
 
@@ -49,23 +48,23 @@ public class LoginActivity extends Activity {
 					editor.putString(Constant.SHAREDPREFERENCE_KEY_USERNAME, userName);
 					editor.putString(Constant.SHAREDPREFERENCE_KEY_PASSWORD, pw);
 					editor.commit();
-					Toast.makeText(context, "µÇÂ¼³É¹¦", 
+					Toast.makeText(context, "ç™»å½•æˆåŠŸ", 
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent();
 					intent.setClass(LoginActivity.this, HomeActivity.class);
 					startActivity(intent);
 					finish();
 				}else if (msg.obj.equals("not exists")){
-					Toast.makeText(context, "ÓÃ»§Ãû²»´æÔÚ", 
+					Toast.makeText(context, "ç”¨æˆ·åä¸å­˜åœ¨", 
 							Toast.LENGTH_LONG).show();
 					userNameEt.requestFocus();
 					userNameEt.selectAll();
 				}else if (msg.obj.equals("failed")){
-					Toast.makeText(context, "ÇëÖØĞÂµÇÂ¼", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "è¯·é‡æ–°ç™»å½•", Toast.LENGTH_SHORT).show();
 				}
 				break;
 			case Constant.NETWORK_FAILED_MESSAGE_TAG:
-				Toast.makeText(context, "ÍøÂçÁ¬½ÓÓĞ´í£¬ÇëÉÔºóÔÙÊÔ",
+				Toast.makeText(context, "ç½‘ç»œè¿æ¥æœ‰é”™ï¼Œè¯·ç¨åå†è¯•",
 						Toast.LENGTH_LONG).show();
 				break;
 			default:
@@ -115,20 +114,20 @@ public class LoginActivity extends Activity {
 			}
 		});
 		dialog = new ProgressDialog(context);
-        //ÉèÖÃ½ø¶ÈÌõ·ç¸ñ£¬·ç¸ñÎªÔ²ĞÎ£¬Ğı×ªµÄ
+        //è®¾ç½®è¿›åº¦æ¡é£æ ¼ï¼Œé£æ ¼ä¸ºåœ†å½¢ï¼Œæ—‹è½¬çš„
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        //ÉèÖÃProgressDialog±êÌâ
-        dialog.setTitle("µÇÂ¼");
-        //ÉèÖÃProgressDialogÌáÊ¾ĞÅÏ¢
-        dialog.setMessage("ÕıÔÚµÇÂ¼");
-        //ÉèÖÃProgressDialgµÄ½ø¶ÈÌõÊÇ·ñ²»Ã÷È·
+        //è®¾ç½®ProgressDialogæ ‡é¢˜
+        dialog.setTitle("ç™»å½•");
+        //è®¾ç½®ProgressDialogæç¤ºä¿¡æ¯
+        dialog.setMessage("æ­£åœ¨ç™»å½•");
+        //è®¾ç½®ProgressDialgçš„è¿›åº¦æ¡æ˜¯å¦ä¸æ˜ç¡®
         dialog.setIndeterminate(false);
-        //ÉèÖÃProgressDialogÊÇ·ñ¿ÉÒÔ°´ÍË»Ø¼üÈ¡Ïû
+        //è®¾ç½®ProgressDialogæ˜¯å¦å¯ä»¥æŒ‰é€€å›é”®å–æ¶ˆ
         dialog.setCancelable(true);
-        //ÉèÖÃProgressDialogµÄÒ»¸öButton
-        dialog.setButton("·µ»Ø", new DialogInterface.OnClickListener(){
+        //è®¾ç½®ProgressDialogçš„ä¸€ä¸ªButton
+        dialog.setButton("è¿”å›", new DialogInterface.OnClickListener(){
         	public void onClick(DialogInterface pDialog, int i){
-        		//µã»÷£¬È¡Ïû¶Ô»°¿ò
+        		//ç‚¹å‡»ï¼Œå–æ¶ˆå¯¹è¯æ¡†
         		dialog.cancel();
         		
         	}
@@ -146,7 +145,7 @@ public class LoginActivity extends Activity {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
 
 	        if((System.currentTimeMillis()-exitTime) > 2000){
-	          Toast.makeText(getApplicationContext(), "ÔÙ°´Ò»´ÎÍË³ö³ÌĞò", Toast.LENGTH_SHORT).show();
+	          Toast.makeText(getApplicationContext(), "å†æŒ‰ä¸€æ¬¡é€€å‡ºç¨‹åº", Toast.LENGTH_SHORT).show();
 	        	exitTime = System.currentTimeMillis();
 	        	
 	        }

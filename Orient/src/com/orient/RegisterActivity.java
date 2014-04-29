@@ -1,7 +1,6 @@
-package com.orient;
+ï»¿package com.orient;
 
 import com.constant.Constant;
-import com.database.WriteSimpleInfoDB;
 import com.network.Register;
 
 import android.os.Bundle;
@@ -49,7 +48,7 @@ public class RegisterActivity extends Activity {
 					editor.putString(Constant.SHAREDPREFERENCE_KEY_USERNAME, userName);
 					editor.putString(Constant.SHAREDPREFERENCE_KEY_PASSWORD, pw);
 					editor.commit();
-					Toast.makeText(context, "×¢²á³É¹¦", 
+					Toast.makeText(context, "æ³¨å†ŒæˆåŠŸ", 
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent();
 					intent.setClass(RegisterActivity.this, HomeActivity.class);
@@ -57,16 +56,16 @@ public class RegisterActivity extends Activity {
 					finish();
 				}
 				else if (msg.obj.equals("email used")){
-					Toast.makeText(context, "ÓÃ»§ÃûÒÑ±»×¢²á", 
+					Toast.makeText(context, "ç”¨æˆ·åå·²è¢«æ³¨å†Œ", 
 							Toast.LENGTH_LONG).show();
 					userNameEt.requestFocus();
 				}
 				else 
-					Toast.makeText(context, "×¢²áÊ§°Ü", 
+					Toast.makeText(context, "æ³¨å†Œå¤±è´¥", 
 							Toast.LENGTH_SHORT).show();
 				break;
 			case Constant.NETWORK_FAILED_MESSAGE_TAG:
-				Toast.makeText(context, "ÍøÂçÁ¬½ÓÓĞ´í£¬ÇëÉÔºóÔÙÊÔ",
+				Toast.makeText(context, "ç½‘ç»œè¿æ¥æœ‰é”™ï¼Œè¯·ç¨åå†è¯•",
 						Toast.LENGTH_LONG).show();
 				break;
 			default:
@@ -81,20 +80,20 @@ public class RegisterActivity extends Activity {
         setContentView(R.layout.register);
         
         dialog = new ProgressDialog(context);
-        //ÉèÖÃ½ø¶ÈÌõ·ç¸ñ£¬·ç¸ñÎªÔ²ĞÎ£¬Ğı×ªµÄ
+        //è®¾ç½®è¿›åº¦æ¡é£æ ¼ï¼Œé£æ ¼ä¸ºåœ†å½¢ï¼Œæ—‹è½¬çš„
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        //ÉèÖÃProgressDialog±êÌâ
-        dialog.setTitle("×¢²á");
-        //ÉèÖÃProgressDialogÌáÊ¾ĞÅÏ¢
-        dialog.setMessage("ÕıÔÚÌá½»×¢²áÏûÏ¢");
-        //ÉèÖÃProgressDialgµÄ½ø¶ÈÌõÊÇ·ñ²»Ã÷È·
+        //è®¾ç½®ProgressDialogæ ‡é¢˜
+        dialog.setTitle("æ³¨å†Œ");
+        //è®¾ç½®ProgressDialogæç¤ºä¿¡æ¯
+        dialog.setMessage("æ­£åœ¨æäº¤æ³¨å†Œæ¶ˆæ¯");
+        //è®¾ç½®ProgressDialgçš„è¿›åº¦æ¡æ˜¯å¦ä¸æ˜ç¡®
         dialog.setIndeterminate(false);
-        //ÉèÖÃProgressDialogÊÇ·ñ¿ÉÒÔ°´ÍË»Ø¼üÈ¡Ïû
+        //è®¾ç½®ProgressDialogæ˜¯å¦å¯ä»¥æŒ‰é€€å›é”®å–æ¶ˆ
         dialog.setCancelable(true);
-        //ÉèÖÃProgressDialogµÄÒ»¸öButton
-        dialog.setButton("·µ»Ø", new DialogInterface.OnClickListener(){
+        //è®¾ç½®ProgressDialogçš„ä¸€ä¸ªButton
+        dialog.setButton("è¿”å›", new DialogInterface.OnClickListener(){
         	public void onClick(DialogInterface pDialog, int i){
-        		//µã»÷£¬È¡Ïû¶Ô»°¿ò
+        		//ç‚¹å‡»ï¼Œå–æ¶ˆå¯¹è¯æ¡†
         		dialog.cancel();
         	}
         });
@@ -123,13 +122,13 @@ public class RegisterActivity extends Activity {
 					gender = FEMALE;
 				}
 				if (!pw.equals(pwCheck)){
-					Toast.makeText(context, "Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´", Toast.LENGTH_SHORT).show();
 					pwCheckEt.requestFocus();
 					return;
 				}
 				GlobalVarApplication gva = (GlobalVarApplication)getApplication();
 				new Register(mHandler, gva.httpClient).check(userName, pw, nickName, phoneNumber, gender);
-				//ÏÔÊ¾½ø¶ÈÌõ¶Ô»°¿ò
+				//æ˜¾ç¤ºè¿›åº¦æ¡å¯¹è¯æ¡†
 				dialog.show();
 				
 			}

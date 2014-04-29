@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +42,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
     private LinearLayout.LayoutParams menuParams;
     private LinearLayout.LayoutParams contentParams;
     private int rightEdge = 0;
-    // menuÍêÈ«ÏÔÊ¾Ê±£¬Áô¸øcontentµÄ¿í¶ÈÖµ¡£
+    // menuå®Œå…¨æ˜¾ç¤ºæ—¶ï¼Œç•™ç»™contentçš„å®½åº¦å€¼ã€‚
     private static final int menuPadding = 250;
     private int disPlayWidth;
     DisplayMetrics dm = new DisplayMetrics();
@@ -62,7 +62,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 		setContentView(R.layout.history);
 		
 		/**
-		 * Ò³Ãæ²Ëµ¥À¸HomeÌø×ª
+		 * é¡µé¢èœå•æ Homeè·³è½¬
 		 */
 		menuHomeButton = (Button)findViewById(R.id.menu_home);
 		menuHomeButton.setOnClickListener(new OnClickListener() {
@@ -78,7 +78,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 		});
 		
 		/**
-		 * Ò³Ãæ²Ëµ¥À¸FriendÌø×ª
+		 * é¡µé¢èœå•æ Friendè·³è½¬
 		 */
 		menuFriendButton = (Button)findViewById(R.id.menu_friend);
 		menuFriendButton.setOnClickListener(new OnClickListener() {
@@ -94,7 +94,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 		});
 		
 		/**
-		 * Ò³Ãæ²Ëµ¥À¸RoomÌø×ª
+		 * é¡µé¢èœå•æ Roomè·³è½¬
 		 */
 		menuRoomButton = (Button)findViewById(R.id.menu_room);
 		menuRoomButton.setOnClickListener(new OnClickListener() {
@@ -107,9 +107,9 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 		});
 		
 		/**
-		 * Ò³Ãæ²Ëµ¥À¸SettingÌø×ª
+		 * é¡µé¢èœå•æ Settingè·³è½¬
 		 */
-		/* Ğ´ÍêSettingAcitivityºó½«ÆäÈ¡Ïû×¢ÊÍ
+		/* å†™å®ŒSettingAcitivityåå°†å…¶å–æ¶ˆæ³¨é‡Š
 		menuSettingButton = (Button)findViewById(R.id.menu_setting);
 		menuSettingButton.setOnClickListener(new OnClickListener() {
 			
@@ -125,7 +125,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 		*/
 		
 		/*
-		 * ÉèÖÃ²Ëµ¥
+		 * è®¾ç½®èœå•
 		 */
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		
@@ -141,7 +141,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
         contentParams.width = disPlayWidth;
 		
 		/*
-		 * ÉèÖÃ½øÈë²Ëµ¥°´Å¥
+		 * è®¾ç½®è¿›å…¥èœå•æŒ‰é’®
 		 */
 		menuButton = (ImageView)findViewById(R.id.history_page_menu);
 		menuButton.setOnClickListener(new OnClickListener() {
@@ -156,7 +156,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 		showMenu(!mIsShow);
 		
 		/*
-		 * ÏÔÊ¾listviewÄÚÈİ
+		 * æ˜¾ç¤ºlistviewå†…å®¹
 		 */
 		listView = (ListView)findViewById(android.R.id.list);
 		show();
@@ -172,7 +172,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 			if( i % 5 == 0 ) {
 				mMap.put("img", R.drawable.ordinary_icon);
 				mMap.put("room_name", "Goldaners");
-				mMap.put("begin_place", "¹ãÖİÖĞÉ½´óÑ§ÌåÓı¹İ");
+				mMap.put("begin_place", "å¹¿å·ä¸­å±±å¤§å­¦ä½“è‚²é¦†");
 				mMap.put("begin_day", "2013-12-04");
 				mMap.put("begin_hour", "13:00");
 				mMap.put("rank", "2");
@@ -180,8 +180,8 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 			}
 			else if ( i % 5 == 1 ) {
 				mMap.put("img", R.drawable.ordinary_icon);
-				mMap.put("room_name", "OrientÄÚ²â");
-				mMap.put("begin_place", "¹ãÖİ´óÑ§³ÇÖĞÉ½´óÑ§ÖĞĞÄ»¨Ì³");
+				mMap.put("room_name", "Orientå†…æµ‹");
+				mMap.put("begin_place", "å¹¿å·å¤§å­¦åŸä¸­å±±å¤§å­¦ä¸­å¿ƒèŠ±å›");
 				mMap.put("begin_day", "2013-12-10");
 				mMap.put("begin_hour", "13:30");
 				mMap.put("rank", "1");
@@ -189,8 +189,8 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 			}
 			else if ( i % 5 == 2 ) {
 				mMap.put("img", R.drawable.potato_button);
-				mMap.put("room_name", "½£Áé");
-				mMap.put("begin_place", "¹ãÖİ´óÑ§³ÇÖĞĞÄÌåÓı¹İ");
+				mMap.put("room_name", "å‰‘çµ");
+				mMap.put("begin_place", "å¹¿å·å¤§å­¦åŸä¸­å¿ƒä½“è‚²é¦†");
 				mMap.put("begin_day", "2013-12-15");
 				mMap.put("begin_hour", "10:00");
 				mMap.put("rank", "3");
@@ -198,8 +198,8 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 			}
 			else if ( i % 5 == 3 ) {
 				mMap.put("img", R.drawable.ordinary_icon);
-				mMap.put("room_name", "Goldaners»¹ÏëÍæ");
-				mMap.put("begin_place", "¹ãÖİº£ÖéÇøÖĞÉ½´óÑ§»³Ê¿ÌÃ");
+				mMap.put("room_name", "Goldanersè¿˜æƒ³ç©");
+				mMap.put("begin_place", "å¹¿å·æµ·ç åŒºä¸­å±±å¤§å­¦æ€€å£«å ‚");
 				mMap.put("begin_day", "2013-12-18");
 				mMap.put("begin_hour", "13:00");
 				mMap.put("rank", "1");
@@ -207,8 +207,8 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 			}
 			else {
 				mMap.put("img", R.drawable.christmas_button);
-				mMap.put("room_name", "Ó­½ÓÊ¥µ®½Ú");
-				mMap.put("begin_place", "¹ãÖİ´óÑ§³Ç±´¸Ú´å");
+				mMap.put("room_name", "è¿æ¥åœ£è¯èŠ‚");
+				mMap.put("begin_place", "å¹¿å·å¤§å­¦åŸè´å²—æ‘");
 				mMap.put("begin_day", "2013-12-20");
 				mMap.put("begin_hour", "15:00");
 				mMap.put("rank", "2");
@@ -221,7 +221,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 	}
 
 	/*
-	 * ÀàlvButtonAdapter
+	 * ç±»lvButtonAdapter
 	 */
 	public class lvButtonAdapter extends BaseAdapter {
 		private class buttonViewHolder {
@@ -313,14 +313,14 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
 	}
 	
 	/*
-	 * ÉèÖÃ"ÔÙ°´Ò»´ÎÍË³ö³ÌĞò"
+	 * è®¾ç½®"å†æŒ‰ä¸€æ¬¡é€€å‡ºç¨‹åº"
 	 */
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
 
         if((System.currentTimeMillis()-exitTime) > 2000){
-            Toast.makeText(getApplicationContext(), "ÔÙ°´Ò»´ÎÍË³ö³ÌĞò", Toast.LENGTH_SHORT).show();                                exitTime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "å†æŒ‰ä¸€æ¬¡é€€å‡ºç¨‹åº", Toast.LENGTH_SHORT).show();                                exitTime = System.currentTimeMillis();
         }
         else{
             finish();
@@ -332,7 +332,7 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
     }
 	
 	/*
-	 * ÉèÖÃ»®¶¯ÆÁÄ»½øÈëºÍÍË³ö²Ëµ¥
+	 * è®¾ç½®åˆ’åŠ¨å±å¹•è¿›å…¥å’Œé€€å‡ºèœå•
 	 */
 	@Override
     public boolean onTouch(View v, MotionEvent event)
@@ -341,11 +341,11 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
         {
 
         case MotionEvent.ACTION_DOWN:  
-            // ÊÖÖ¸°´ÏÂÊ±£¬¼ÇÂ¼°´ÏÂÊ±µÄºá×ø±ê  
+            // æ‰‹æŒ‡æŒ‰ä¸‹æ—¶ï¼Œè®°å½•æŒ‰ä¸‹æ—¶çš„æ¨ªåæ ‡  
             xDown = event.getRawX();  
             break;  
         case MotionEvent.ACTION_MOVE:  
-            // ÊÖÖ¸ÒÆ¶¯Ê±£¬¶Ô±È°´ÏÂÊ±µÄºá×ø±ê£¬¼ÆËã³öÒÆ¶¯µÄ¾àÀë£¬À´µ÷Õû×ó²à²¼¾ÖµÄleftMarginÖµ£¬´Ó¶øÏÔÊ¾ºÍÒş²Ø×ó²à²¼¾Ö  
+            // æ‰‹æŒ‡ç§»åŠ¨æ—¶ï¼Œå¯¹æ¯”æŒ‰ä¸‹æ—¶çš„æ¨ªåæ ‡ï¼Œè®¡ç®—å‡ºç§»åŠ¨çš„è·ç¦»ï¼Œæ¥è°ƒæ•´å·¦ä¾§å¸ƒå±€çš„leftMarginå€¼ï¼Œä»è€Œæ˜¾ç¤ºå’Œéšè—å·¦ä¾§å¸ƒå±€  
             xMove = event.getRawX();  
             int distanceX = (int) (xMove - xDown);  
             if(mIsShow==false){
@@ -356,14 +356,14 @@ public class HistoryActivity extends ListActivity implements OnTouchListener {
             		showMenu(mIsShow);
 			}
         case MotionEvent.ACTION_UP:  
-            // ÊÖÖ¸Ì§ÆğÊ±£¬½øĞĞÅĞ¶Ïµ±Ç°ÊÖÊÆµÄÒâÍ¼£¬´Ó¶ø¾ö¶¨ÊÇ¹ö¶¯µ½×ó²à²¼¾Ö£¬»¹ÊÇ¹ö¶¯µ½ÓÒ²à²¼¾Ö  
+            // æ‰‹æŒ‡æŠ¬èµ·æ—¶ï¼Œè¿›è¡Œåˆ¤æ–­å½“å‰æ‰‹åŠ¿çš„æ„å›¾ï¼Œä»è€Œå†³å®šæ˜¯æ»šåŠ¨åˆ°å·¦ä¾§å¸ƒå±€ï¼Œè¿˜æ˜¯æ»šåŠ¨åˆ°å³ä¾§å¸ƒå±€  
            break;
         }
         return true;
     }
 	
 	/*
-	 * ²Ëµ¥³öÏÖº¯ÊıshowMenu()
+	 * èœå•å‡ºç°å‡½æ•°showMenu()
 	 */
 	private void showMenu(boolean isShow)
     {

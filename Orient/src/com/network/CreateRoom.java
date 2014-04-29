@@ -14,33 +14,32 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.xmlpull.v1.XmlPullParserException;
 
-import android.os.Message;
 import android.util.Log;
 
 import com.constant.Constant;
 
-public class GetRoute {
-	static final String url = Constant.URL+"getroute";
-	private static final String ROUTE_ID = "routeid";
+public class CreateRoom {
+	static final String url = Constant.URL+"createroom";
+	static final String LATITUDE = "latitude";
+	static final String LONGTITUDE = "longtitude";
 	private HttpClient client;
-	private int routeid;
-	public GetRoute(HttpClient client, int routeid){
-		this.client = client;
-		this.routeid = routeid;
-		new Thread(new getRouteRunnable()).start();
+	
+	public CreateRoom(HttpClient pClient){
+		this.client = pClient;
+		
 	}
 	
-	class getRouteRunnable implements Runnable{
+	class CreateRoomRunnable implements Runnable{
 
 		@Override
-		public void run() {	
+		public void run() {
 			HttpPost httpPost = new HttpPost(url);
 	        HttpResponse response = null;
 	        String xml = null;
 	        List<NameValuePair> paramsList = new ArrayList<NameValuePair>();
-	        paramsList.add(new BasicNameValuePair(ROUTE_ID, String.valueOf(routeid)));
+	        //paramsList.add(new BasicNameValuePair(LATITUDE, String.valueOf(routeid)));
+	        //paramsList.add(new BasicNameValuePair(LONGTITUDE, String.valueOf(routeid)));
 	        try {
 	            httpPost.setEntity(new UrlEncodedFormEntity(paramsList, HTTP.UTF_8));
 	            response = client.execute(httpPost);
@@ -78,5 +77,6 @@ public class GetRoute {
 	        	
 	        }
 		}
+		
 	}
 }

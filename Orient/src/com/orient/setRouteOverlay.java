@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,7 +9,7 @@ import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
 public class setRouteOverlay extends ItemizedOverlay<OverlayItem>{  
-    //ÓÃMapView¹¹ÔìItemizedOverlay
+    //ç”¨MapViewæ„é€ ItemizedOverlay
 	static Drawable mark;
 	static MapView mapView;
     public setRouteOverlay(Drawable mark,MapView mapView){  
@@ -19,9 +19,9 @@ public class setRouteOverlay extends ItemizedOverlay<OverlayItem>{
     }  
 
     protected boolean onTap(final int index) {  
-        //ÔÚ´Ë´¦Àíitemµã»÷ÊÂ¼ş  
+        //åœ¨æ­¤å¤„ç†itemç‚¹å‡»äº‹ä»¶  
     	OverlayItem tmp = getItem(index);
-    	String[] string = tmp.getTitle().equals("mission")? new String[]{"É¾³ı´Ë¹Ø¿¨","È¡Ïû"}:new String[]{"É¾³ıÕÙ¼¯µã","È¡Ïû"};
+    	String[] string = tmp.getTitle().equals("mission")? new String[]{"åˆ é™¤æ­¤å…³å¡","å–æ¶ˆ"}:new String[]{"åˆ é™¤å¬é›†ç‚¹","å–æ¶ˆ"};
     	new AlertDialog.Builder(Room_Second_1_2.context).setItems(string, new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -44,7 +44,7 @@ public class setRouteOverlay extends ItemizedOverlay<OverlayItem>{
         return true;  
     } 
     public boolean onTap(GeoPoint pt, MapView mapView){  
-            //ÔÚ´Ë´¦ÀíMapViewµÄµã»÷ÊÂ¼ş£¬µ±·µ»Ø trueÊ±  
+            //åœ¨æ­¤å¤„ç†MapViewçš„ç‚¹å‡»äº‹ä»¶ï¼Œå½“è¿”å› trueæ—¶  
     		//Toast.makeText(Room_Second_1_2.context, pt.toString(), 3000).show();
             super.onTap(pt,mapView);  
             return false;  

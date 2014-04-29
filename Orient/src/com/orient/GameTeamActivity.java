@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,12 +40,12 @@ public class GameTeamActivity extends Activity {
     	requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_team);
-    	//´«µİ·¿¼äÃû×Ö
+    	//ä¼ é€’æˆ¿é—´åå­—
         Intent intent = getIntent();
         roomNameString = intent.getStringExtra("roomName");
         roomNameTextView = (TextView)findViewById(R.id.room_name);
         if (roomNameString == null || roomNameString == "") {
-        	 roomNameTextView.setText("Î¬¶àÀûÑÇµÄÏüÒ¹");
+        	 roomNameTextView.setText("ç»´å¤šåˆ©äºšçš„å®µå¤œ");
         } else {
         	roomNameTextView.setText(roomNameString);
         }
@@ -166,11 +166,11 @@ public class GameTeamActivity extends Activity {
 		});
     }
     
-    //ÔÚÑ¡Ïî²Ëµ¥ÖĞÌí¼ÓÍË³ö·¿¼äµÄ°´Å¥
+    //åœ¨é€‰é¡¹èœå•ä¸­æ·»åŠ é€€å‡ºæˆ¿é—´çš„æŒ‰é’®
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		Menu mainMenu = menu;
-		mainMenu.add(0, 1, Menu.NONE, "ÍË³ö·¿¼ä");
+		mainMenu.add(0, 1, Menu.NONE, "é€€å‡ºæˆ¿é—´");
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -201,7 +201,7 @@ public class GameTeamActivity extends Activity {
 		return super.onOptionsItemSelected(item);  
 	}
 	
-  //ÉèÖÃ·µ»Ø¼ü·µ»ØÖ÷Ò³
+  //è®¾ç½®è¿”å›é”®è¿”å›ä¸»é¡µ
   	@Override
   	public boolean onKeyDown(int keyCode, KeyEvent event) {
   		if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){

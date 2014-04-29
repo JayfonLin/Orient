@@ -1,7 +1,6 @@
 package com.orient;
 
 import com.constant.Constant;
-import com.database.MemberDAO;
 import com.network.Login;
 
 import android.app.Activity;
@@ -19,7 +18,6 @@ import android.view.Window;
 import android.widget.Toast;
 
 public class StartActivity extends Activity{
-	MemberDAO memberDAO;
     SQLiteDatabase db;
     String username;
     String pw;
@@ -32,7 +30,7 @@ public class StartActivity extends Activity{
 			switch(msg.what){
 			case Constant.NETWORK_SUCCESS_MESSAGE_TAG: 
 				if (msg.obj.equals("success")) {
-					Toast.makeText(context, "µÇÂ¼³É¹¦", 
+					Toast.makeText(context, "ç™»å½•æˆåŠŸ", 
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent();
 					intent.setClass(StartActivity.this, HomeActivity.class);
@@ -40,14 +38,14 @@ public class StartActivity extends Activity{
 					finish();
 				}
 				else if (msg.obj.equals("not exists")){
-					Toast.makeText(context, "ÓÃ»§Ãû²»´æÔÚ", 
+					Toast.makeText(context, "ç”¨æˆ·åä¸å­˜åœ¨", 
 							Toast.LENGTH_LONG).show();
 					Intent intent = new Intent();
 					intent.setClass(StartActivity.this, LoginActivity.class);
 					startActivity(intent);
 					finish();
 				}else if (msg.obj.equals("failed")){
-					Toast.makeText(context, "ÇëÖØĞÂµÇÂ¼", 
+					Toast.makeText(context, "è¯·é‡æ–°ç™»å½•", 
 							Toast.LENGTH_LONG).show();
 					Intent intent = new Intent();
 					intent.setClass(StartActivity.this, LoginActivity.class);
@@ -56,7 +54,7 @@ public class StartActivity extends Activity{
 				}
 				break;
 			case Constant.NETWORK_FAILED_MESSAGE_TAG:
-				Toast.makeText(context, "ÍøÂçÁ¬½ÓÓĞ´í£¬ÇëÉÔºóÔÙÊÔ",
+				Toast.makeText(context, "ç½‘ç»œè¿æ¥æœ‰é”™ï¼Œè¯·ç¨åå†è¯•",
 						Toast.LENGTH_LONG).show();
 				Intent intent = new Intent();
 				intent.setClass(StartActivity.this, LoginActivity.class);

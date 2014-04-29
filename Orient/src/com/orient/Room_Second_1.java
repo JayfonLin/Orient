@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 import java.util.Calendar;
 
@@ -30,7 +30,7 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 	private ImageButton next;
 	private ImageButton backHomeImageButton;
 	private EditText etStartTime;
-    private ImageAdapter imgAdapter = null;			// ÉùÃ÷Í¼Æ¬×ÊÔ´¶ÔÏó
+    private ImageAdapter imgAdapter = null;			// å£°æ˜å›¾ç‰‡èµ„æºå¯¹è±¡
 	private Gallery gallery = null;
 	private EditText roomNameEditText;
 	private String roomNameString;
@@ -49,13 +49,13 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
         
         gallery = (Gallery) findViewById(R.id.gallery);
 		imgAdapter = new ImageAdapter(this);
-		gallery.setAdapter(imgAdapter); 					// ÉèÖÃÍ¼Æ¬×ÊÔ´
-		gallery.setGravity(Gravity.CENTER_HORIZONTAL);		// ÉèÖÃË®Æ½¾ÓÖĞÏÔÊ¾
-		gallery.setSelection(imgAdapter.imgs.length * 100);		// ÉèÖÃÆğÊ¼Í¼Æ¬ÏÔÊ¾Î»ÖÃ£¨¿ÉÒÔÓÃÀ´ÖÆ×÷galleryÑ­»·ÏÔÊ¾Ğ§¹û£©
+		gallery.setAdapter(imgAdapter); 					// è®¾ç½®å›¾ç‰‡èµ„æº
+		gallery.setGravity(Gravity.CENTER_HORIZONTAL);		// è®¾ç½®æ°´å¹³å±…ä¸­æ˜¾ç¤º
+		gallery.setSelection(imgAdapter.imgs.length * 100);		// è®¾ç½®èµ·å§‹å›¾ç‰‡æ˜¾ç¤ºä½ç½®ï¼ˆå¯ä»¥ç”¨æ¥åˆ¶ä½œgalleryå¾ªç¯æ˜¾ç¤ºæ•ˆæœï¼‰
 		
-		gallery.setOnItemClickListener(clickListener); 			// ÉèÖÃµã»÷Í¼Æ¬µÄ¼àÌıÊÂ¼ş£¨ĞèÒªÓÃÊÖµã»÷²Å´¥·¢£¬»¬¶¯Ê±²»´¥·¢£©
-		gallery.setOnItemSelectedListener(selectedListener);		// ÉèÖÃÑ¡ÖĞÍ¼Æ¬µÄ¼àÌıÊÂ¼ş£¨µ±Í¼Æ¬»¬µ½ÆÁÄ»ÕıÖĞ£¬ÔòÊÓÎª×Ô¶¯Ñ¡ÖĞ£©
-		gallery.setUnselectedAlpha(0.3f);					// ÉèÖÃÎ´Ñ¡ÖĞÍ¼Æ¬µÄÍ¸Ã÷¶È
+		gallery.setOnItemClickListener(clickListener); 			// è®¾ç½®ç‚¹å‡»å›¾ç‰‡çš„ç›‘å¬äº‹ä»¶ï¼ˆéœ€è¦ç”¨æ‰‹ç‚¹å‡»æ‰è§¦å‘ï¼Œæ»‘åŠ¨æ—¶ä¸è§¦å‘ï¼‰
+		gallery.setOnItemSelectedListener(selectedListener);		// è®¾ç½®é€‰ä¸­å›¾ç‰‡çš„ç›‘å¬äº‹ä»¶ï¼ˆå½“å›¾ç‰‡æ»‘åˆ°å±å¹•æ­£ä¸­ï¼Œåˆ™è§†ä¸ºè‡ªåŠ¨é€‰ä¸­ï¼‰
+		gallery.setUnselectedAlpha(0.3f);					// è®¾ç½®æœªé€‰ä¸­å›¾ç‰‡çš„é€æ˜åº¦
 		gallery.setSpacing(40);					
 		
 		next = (ImageButton) findViewById(R.id.nextButton);
@@ -64,13 +64,13 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 			@Override
 			public void onClick(View v) {			
 				Intent intent = new Intent();
-				//°ÑÊäÈëµÄ·¿¼äÃû´«µİµ½ÏÂÒ»¸ö½çÃæ
+				//æŠŠè¾“å…¥çš„æˆ¿é—´åä¼ é€’åˆ°ä¸‹ä¸€ä¸ªç•Œé¢
 				roomNameEditText = (EditText)findViewById(R.id.roomName_editText);
 				roomNameString = roomNameEditText.getText().toString();
 				String numString=((EditText)findViewById(R.id.numpergroup)).getText().toString();
 				String date = ((EditText)findViewById(R.id.room_create_2_date)).getText().toString();
 				if(roomNameString.equals("")||numString.equals("")||date.equals("")){
-					new AlertDialog.Builder(Room_Second_1.this).setMessage("ÇëÌîĞ´ÍêÕû").setPositiveButton("È·¶¨", null).create().show();
+					new AlertDialog.Builder(Room_Second_1.this).setMessage("è¯·å¡«å†™å®Œæ•´").setPositiveButton("ç¡®å®š", null).create().show();
 					return;
 				}
 				int numpergroup = Integer.valueOf(numString).intValue();
@@ -80,7 +80,7 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 		        intent.setClass(Room_Second_1.this, Room_Second_1_2.class);
 		        startActivity(intent);
 		        //finish();
-		        //ÏÂÃæ´úÂëÊÇÓÃTabÊ±ºòµÄ´úÂë£¬ÒÑ¾­ÎŞ×÷ÓÃ
+		        //ä¸‹é¢ä»£ç æ˜¯ç”¨Tabæ—¶å€™çš„ä»£ç ï¼Œå·²ç»æ— ä½œç”¨
 //		        View decorView = CreateGroup.createGroup.getLocalActivityManager().startActivity("Room_Second_1_2", intent).getDecorView();
 //		        CreateGroup.createGroup.replaceContentView(decorView);
 			}
@@ -100,7 +100,7 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 		});
 	}
 	
-	//ÉèÖÃ·µ»Ø¼ü·µ»ØÖ÷Ò³
+	//è®¾ç½®è¿”å›é”®è¿”å›ä¸»é¡µ
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
@@ -137,14 +137,14 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
                 etStartTime.setInputType(inType);
                 etStartTime.setSelection(etStartTime.getText().length());
                 
-                builder.setTitle("Ñ¡È¡ÆğÊ¼Ê±¼ä");
-                builder.setPositiveButton("È·  ¶¨", new DialogInterface.OnClickListener() {
+                builder.setTitle("é€‰å–èµ·å§‹æ—¶é—´");
+                builder.setPositiveButton("ç¡®  å®š", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         StringBuffer sb = new StringBuffer();
-                        sb.append(String.format("%dÄê%02dÔÂ%02dÈÕ", 
+                        sb.append(String.format("%då¹´%02dæœˆ%02dæ—¥", 
                                 datePicker.getYear(), 
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
@@ -167,19 +167,19 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
         return true;
     }
     
-    // µã»÷Í¼Æ¬µÄ¼àÌıÊÂ¼ş
+    // ç‚¹å‡»å›¾ç‰‡çš„ç›‘å¬äº‹ä»¶
  	AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
  		@Override
  		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
- 			//Toast.makeText(GalleryActivity.this, "µã»÷Í¼Æ¬ " + (position + 1), 100).show();
+ 			//Toast.makeText(GalleryActivity.this, "ç‚¹å‡»å›¾ç‰‡ " + (position + 1), 100).show();
  		}
  	};
  	
- 	// Ñ¡ÖĞÍ¼Æ¬µÄ¼àÌıÊÂ¼ş
+ 	// é€‰ä¸­å›¾ç‰‡çš„ç›‘å¬äº‹ä»¶
  	AdapterView.OnItemSelectedListener selectedListener = new AdapterView.OnItemSelectedListener() {
  		@Override
  		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
- 			//Toast.makeText(GalleryActivity.this, "Ñ¡ÖĞÍ¼Æ¬ " + (position + 1), 20).show();
+ 			//Toast.makeText(GalleryActivity.this, "é€‰ä¸­å›¾ç‰‡ " + (position + 1), 20).show();
  		}
 
  		@Override

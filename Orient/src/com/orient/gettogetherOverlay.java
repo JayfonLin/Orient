@@ -1,4 +1,4 @@
-
+ï»¿
 package com.orient;
 
 import android.app.AlertDialog;
@@ -11,14 +11,14 @@ import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
 public class gettogetherOverlay extends ItemizedOverlay<OverlayItem> {  
-    //ÓÃMapView¹¹ÔìItemizedOverlay  
+    //ç”¨MapViewæ„é€ ItemizedOverlay  
     public gettogetherOverlay(Drawable mark,MapView mapView){  
             super(mark,mapView);  
     }  
     protected boolean onTap(final int index) {  
-        //ÔÚ´Ë´¦Àíitemµã»÷ÊÂ¼ş  
+        //åœ¨æ­¤å¤„ç†itemç‚¹å‡»äº‹ä»¶  
     	
-//    	new AlertDialog.Builder(Room_Second_1_2.context.getApplicationContext()).setItems(new String[]{"É¾³ıÆğÊ¼µã","È¡Ïû"}, new DialogInterface.OnClickListener() {
+//    	new AlertDialog.Builder(Room_Second_1_2.context.getApplicationContext()).setItems(new String[]{"åˆ é™¤èµ·å§‹ç‚¹","å–æ¶ˆ"}, new DialogInterface.OnClickListener() {
 //			
 //			@Override
 //			public void onClick(DialogInterface arg0, int arg1) {
@@ -38,7 +38,7 @@ public class gettogetherOverlay extends ItemizedOverlay<OverlayItem> {
         return true;  
     }  
         public boolean onTap(GeoPoint pt, MapView mapView){  
-                //ÔÚ´Ë´¦ÀíMapViewµÄµã»÷ÊÂ¼ş£¬µ±·µ»Ø trueÊ±  
+                //åœ¨æ­¤å¤„ç†MapViewçš„ç‚¹å‡»äº‹ä»¶ï¼Œå½“è¿”å› trueæ—¶  
         		//Toast.makeText(Room_Second_1_2.context, pt.toString(), 3000).show();
                 super.onTap(pt,mapView);  
                 return false;  

@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 
 
@@ -33,10 +33,10 @@ public class RoomActivity extends TabActivity implements OnTouchListener {
     private LinearLayout.LayoutParams menuParams;
     private LinearLayout.LayoutParams contentParams;
     private int rightEdge = 0;
-    // menuÍêÈ«ÏÔÊ¾Ê±£¬Áô¸øcontentµÄ¿í¶ÈÖµ¡£
+    // menuå®Œå…¨æ˜¾ç¤ºæ—¶ï¼Œç•™ç»™contentçš„å®½åº¦å€¼ã€‚
     private static final int menuPadding = 250;
 
-    // ·Ö±æÂÊ
+    // åˆ†è¾¨ç‡
     private int disPlayWidth;
     DisplayMetrics dm = new DisplayMetrics();
 
@@ -59,15 +59,15 @@ public class RoomActivity extends TabActivity implements OnTouchListener {
         
         TabHost tabHost=getTabHost();
 		tabHost.addTab(tabHost.newTabSpec("RoomHistoryActivity")
-				.setIndicator("ÀúÊ·¼ÇÂ¼", 
+				.setIndicator("å†å²è®°å½•", 
 				this.getResources().getDrawable(R.drawable.button_invite))
 				.setContent(new Intent(this, HistoryGroup.class)));
         tabHost.addTab(tabHost.newTabSpec("RoomCreateActivity")
-        		.setIndicator("´´½¨·¿¼ä", 
+        		.setIndicator("åˆ›å»ºæˆ¿é—´", 
         				this.getResources().getDrawable(R.drawable.button_invite))
         				.setContent(new Intent(this, CreateGroup.class)));
         tabHost.addTab(tabHost.newTabSpec("RoomJoinActivity")
-        		.setIndicator("¼ÓÈë·¿¼ä",
+        		.setIndicator("åŠ å…¥æˆ¿é—´",
         				this.getResources().getDrawable(R.drawable.button_invite))
         				.setContent(new Intent(this,JoinGroup.class)));
         tabHost.setCurrentTab(0);
@@ -132,11 +132,11 @@ public class RoomActivity extends TabActivity implements OnTouchListener {
 	        {
 
 	        case MotionEvent.ACTION_DOWN:  
-	            // ÊÖÖ¸°´ÏÂÊ±£¬¼ÇÂ¼°´ÏÂÊ±µÄºá×ø±ê  
+	            // æ‰‹æŒ‡æŒ‰ä¸‹æ—¶ï¼Œè®°å½•æŒ‰ä¸‹æ—¶çš„æ¨ªåæ ‡  
 	            xDown = event.getRawX();  
 	            break;  
 	        case MotionEvent.ACTION_MOVE:  
-	            // ÊÖÖ¸ÒÆ¶¯Ê±£¬¶Ô±È°´ÏÂÊ±µÄºá×ø±ê£¬¼ÆËã³öÒÆ¶¯µÄ¾àÀë£¬À´µ÷Õû×ó²à²¼¾ÖµÄleftMarginÖµ£¬´Ó¶øÏÔÊ¾ºÍÒş²Ø×ó²à²¼¾Ö  
+	            // æ‰‹æŒ‡ç§»åŠ¨æ—¶ï¼Œå¯¹æ¯”æŒ‰ä¸‹æ—¶çš„æ¨ªåæ ‡ï¼Œè®¡ç®—å‡ºç§»åŠ¨çš„è·ç¦»ï¼Œæ¥è°ƒæ•´å·¦ä¾§å¸ƒå±€çš„leftMarginå€¼ï¼Œä»è€Œæ˜¾ç¤ºå’Œéšè—å·¦ä¾§å¸ƒå±€  
 	            xMove = event.getRawX();  
 	            int distanceX = (int) (xMove - xDown);  
 	            if(mIsShow==false){
@@ -147,7 +147,7 @@ public class RoomActivity extends TabActivity implements OnTouchListener {
 	            		showMenu(mIsShow);
 				}
 	        case MotionEvent.ACTION_UP:  
-	            // ÊÖÖ¸Ì§ÆğÊ±£¬½øĞĞÅĞ¶Ïµ±Ç°ÊÖÊÆµÄÒâÍ¼£¬´Ó¶ø¾ö¶¨ÊÇ¹ö¶¯µ½×ó²à²¼¾Ö£¬»¹ÊÇ¹ö¶¯µ½ÓÒ²à²¼¾Ö  
+	            // æ‰‹æŒ‡æŠ¬èµ·æ—¶ï¼Œè¿›è¡Œåˆ¤æ–­å½“å‰æ‰‹åŠ¿çš„æ„å›¾ï¼Œä»è€Œå†³å®šæ˜¯æ»šåŠ¨åˆ°å·¦ä¾§å¸ƒå±€ï¼Œè¿˜æ˜¯æ»šåŠ¨åˆ°å³ä¾§å¸ƒå±€  
 	           break;
 	        }
 	        return true;
@@ -176,7 +176,7 @@ public class RoomActivity extends TabActivity implements OnTouchListener {
 		//TabHost = (TabHost)findViewById(R.id.tabhost);
 		//TabHost.setup();
 		
-        //ÉèÖÃÄ¬ÈÏÏÔÊ¾²¼¾Ö
+        //è®¾ç½®é»˜è®¤æ˜¾ç¤ºå¸ƒå±€
         TabHost.setCurrentTab(0);
 	}
 
@@ -186,7 +186,7 @@ public class RoomActivity extends TabActivity implements OnTouchListener {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
 
         if((System.currentTimeMillis()-exitTime) > 2000){
-            Toast.makeText(getApplicationContext(), "ÔÙ°´Ò»´ÎÍË³ö³ÌĞò", Toast.LENGTH_SHORT).show();                                exitTime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "å†æŒ‰ä¸€æ¬¡é€€å‡ºç¨‹åº", Toast.LENGTH_SHORT).show();                                exitTime = System.currentTimeMillis();
         }
         else{
             finish();

@@ -1,4 +1,4 @@
-package com.orient;
+ï»¿package com.orient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,10 +41,10 @@ public class HomeActivity extends Activity implements OnTouchListener
     private LinearLayout.LayoutParams menuParams;
     private LinearLayout.LayoutParams contentParams;
     private int rightEdge = 0;
-    // menuÍêÈ«ÏÔÊ¾Ê±£¬Áô¸øcontentµÄ¿í¶ÈÖµ¡£
+    // menuå®Œå…¨æ˜¾ç¤ºæ—¶ï¼Œç•™ç»™contentçš„å®½åº¦å€¼ã€‚
     private static final int menuPadding = 250;
 
-    // ·Ö±æÂÊ
+    // åˆ†è¾¨ç‡
     private int disPlayWidth;
     DisplayMetrics dm = new DisplayMetrics();
 
@@ -150,11 +150,11 @@ public class HomeActivity extends Activity implements OnTouchListener
         {
 
         case MotionEvent.ACTION_DOWN:  
-            // ÊÖÖ¸°´ÏÂÊ±£¬¼ÇÂ¼°´ÏÂÊ±µÄºá×ø±ê  
+            // æ‰‹æŒ‡æŒ‰ä¸‹æ—¶ï¼Œè®°å½•æŒ‰ä¸‹æ—¶çš„æ¨ªåæ ‡  
             xDown = event.getRawX();  
             break;  
         case MotionEvent.ACTION_MOVE:  
-            // ÊÖÖ¸ÒÆ¶¯Ê±£¬¶Ô±È°´ÏÂÊ±µÄºá×ø±ê£¬¼ÆËã³öÒÆ¶¯µÄ¾àÀë£¬À´µ÷Õû×ó²à²¼¾ÖµÄleftMarginÖµ£¬´Ó¶øÏÔÊ¾ºÍÒş²Ø×ó²à²¼¾Ö  
+            // æ‰‹æŒ‡ç§»åŠ¨æ—¶ï¼Œå¯¹æ¯”æŒ‰ä¸‹æ—¶çš„æ¨ªåæ ‡ï¼Œè®¡ç®—å‡ºç§»åŠ¨çš„è·ç¦»ï¼Œæ¥è°ƒæ•´å·¦ä¾§å¸ƒå±€çš„leftMarginå€¼ï¼Œä»è€Œæ˜¾ç¤ºå’Œéšè—å·¦ä¾§å¸ƒå±€  
             xMove = event.getRawX();  
             int distanceX = (int) (xMove - xDown);  
             if(mIsShow==false){
@@ -165,7 +165,7 @@ public class HomeActivity extends Activity implements OnTouchListener
             		showMenu(mIsShow);
 			}
         case MotionEvent.ACTION_UP:  
-            // ÊÖÖ¸Ì§ÆğÊ±£¬½øĞĞÅĞ¶Ïµ±Ç°ÊÖÊÆµÄÒâÍ¼£¬´Ó¶ø¾ö¶¨ÊÇ¹ö¶¯µ½×ó²à²¼¾Ö£¬»¹ÊÇ¹ö¶¯µ½ÓÒ²à²¼¾Ö  
+            // æ‰‹æŒ‡æŠ¬èµ·æ—¶ï¼Œè¿›è¡Œåˆ¤æ–­å½“å‰æ‰‹åŠ¿çš„æ„å›¾ï¼Œä»è€Œå†³å®šæ˜¯æ»šåŠ¨åˆ°å·¦ä¾§å¸ƒå±€ï¼Œè¿˜æ˜¯æ»šåŠ¨åˆ°å³ä¾§å¸ƒå±€  
            break;
         }
         return true;
@@ -190,7 +190,7 @@ public class HomeActivity extends Activity implements OnTouchListener
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
 
         if((System.currentTimeMillis()-exitTime) > 2000){
-            Toast.makeText(getApplicationContext(), "ÔÙ°´Ò»´ÎÍË³ö³ÌĞò", Toast.LENGTH_SHORT).show();                                exitTime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "å†æŒ‰ä¸€æ¬¡é€€å‡ºç¨‹åº", Toast.LENGTH_SHORT).show();                                exitTime = System.currentTimeMillis();
         }
         else{
             finish();
@@ -215,7 +215,7 @@ public class HomeActivity extends Activity implements OnTouchListener
          	if ( i % 6 == 0) {
  	        	mMap.put("image", R.drawable.pic_2);
  	        	mMap.put("username", "Jackie");
- 	        	mMap.put("point", "¹ãÖİ´óÑ§³ÇÖĞÉ½´óÑ§Í¼Êé¹İ");
+ 	        	mMap.put("point", "å¹¿å·å¤§å­¦åŸä¸­å±±å¤§å­¦å›¾ä¹¦é¦†");
  	        	mMap.put("roomname", dataList.get(i).get("roomname"));
  	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
  	        	mMap.put("time", dataList.get(i).get("date"));
@@ -231,7 +231,7 @@ public class HomeActivity extends Activity implements OnTouchListener
          		mMap.put("image", R.drawable.pic_3);
  	        	mMap.put("username", "David");
  	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "¹ãÖİ´óÑ§³ÇÖĞ¶şºáÂ·");
+ 	        	mMap.put("point", "å¹¿å·å¤§å­¦åŸä¸­äºŒæ¨ªè·¯");
  	        	mMap.put("roomname", dataList.get(i).get("roomname"));
  	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
  	        	mMap.put("time", dataList.get(i).get("date"));
@@ -239,9 +239,9 @@ public class HomeActivity extends Activity implements OnTouchListener
          	} else if ( i % 6 == 2 ) {
          		
          		mMap.put("image", R.drawable.photo_loly);
- 	        	mMap.put("username", "ÏºÃ×");
+ 	        	mMap.put("username", "è™¾ç±³");
  	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "¹ãÖİ´óÑ§³ÇÄÚ»·¶«Â·");
+ 	        	mMap.put("point", "å¹¿å·å¤§å­¦åŸå†…ç¯ä¸œè·¯");
  	        	mMap.put("roomname", dataList.get(i).get("roomname"));
  	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
  	        	mMap.put("time", dataList.get(i).get("date"));
@@ -251,7 +251,7 @@ public class HomeActivity extends Activity implements OnTouchListener
          		mMap.put("image", R.drawable.photo3);
  	        	mMap.put("username", "Ryan");
  	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "¹ãÖİ´óÑ§³Ç»ªÄÏÀí¹¤");
+ 	        	mMap.put("point", "å¹¿å·å¤§å­¦åŸåå—ç†å·¥");
  	        	mMap.put("roomname", dataList.get(i).get("roomname"));
  	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
  	        	mMap.put("time", dataList.get(i).get("date"));
@@ -259,9 +259,9 @@ public class HomeActivity extends Activity implements OnTouchListener
          	} else if ( i % 6 == 4 ) {
          		
          		mMap.put("image", R.drawable.photo3);
- 	        	mMap.put("username", "´óÍ·");
+ 	        	mMap.put("username", "å¤§å¤´");
  	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "¹ãÖİº£ÖéÇøÖĞÉ½´óÑ§");
+ 	        	mMap.put("point", "å¹¿å·æµ·ç åŒºä¸­å±±å¤§å­¦");
  	        	mMap.put("roomname", dataList.get(i).get("roomname"));
  	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
  	        	mMap.put("time", dataList.get(i).get("date"));
@@ -269,9 +269,9 @@ public class HomeActivity extends Activity implements OnTouchListener
          	} else {
          		
          		mMap.put("image", R.drawable.photo1);
- 	        	mMap.put("username", "‚Æ‚Æ");
+ 	        	mMap.put("username", "å²å²");
  	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "¹ãÖİÌìºÓÇø³µÚéÂ·");
+ 	        	mMap.put("point", "å¹¿å·å¤©æ²³åŒºè½¦é™‚è·¯");
  	        	mMap.put("roomname", dataList.get(i).get("roomname"));
  	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
  	        	mMap.put("time", dataList.get(i).get("date"));
@@ -286,7 +286,7 @@ public class HomeActivity extends Activity implements OnTouchListener
           @Override  
               public void onItemSelected(AdapterView<?> parent, View view,  
                       int position, long id) {  
-                  //µ±´ËÑ¡ÖĞµÄitemµÄ×Ó¿Ø¼şĞèÒª»ñµÃ½¹µãÊ±   
+                  //å½“æ­¤é€‰ä¸­çš„itemçš„å­æ§ä»¶éœ€è¦è·å¾—ç„¦ç‚¹æ—¶   
                   listView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);  
                 //else parent.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);   
              }  

@@ -1,4 +1,4 @@
-package com.orient;
+锘縫ackage com.orient;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -44,7 +44,7 @@ public class GlobalVarApplication extends Application{
 					}else{
 						insertRouteResponse = "upload success";
 						
-						Log.i("lin", "路线成功上传");
+						Log.i("lin", "璺嚎鎴愬姛涓婁紶");
 						playRouteId = Integer.parseInt(msg.obj.toString());
 						Log.i("lin", "Remote Route Id: "+playRouteId);
 						new GetRoute(httpClient, playRouteId);
