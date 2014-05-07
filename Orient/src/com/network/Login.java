@@ -89,6 +89,8 @@ public class Login {
 	            	Message msg = new Message();
 	                msg.what = Constant.NETWORK_FAILED_MESSAGE_TAG;
 	                handler.sendMessage(msg);
+	                //xml = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+	                //Log.i("lin", xml);
 	            }
 	            
 	        } catch (UnsupportedEncodingException e) {

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.security.auth.PrivateCredentialPermission;
 
 import com.orient.R.id;
+import com.test.TestActivity;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -69,6 +70,19 @@ public class HomeActivity extends Activity implements OnTouchListener
         
         listView = (ListView) this.findViewById(R.id.home_listView);
         show();
+        
+        //测试代码，后期可去掉
+        Button testBtn = (Button) findViewById(R.id.testButton);
+        testBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(HomeActivity.this, TestActivity.class);
+				startActivity(intent);
+			}
+		});
+        //测试代码 完
         
         menuFriendButton = (Button)findViewById(R.id.menu_friend);
         menuFriendButton.setOnClickListener(new OnClickListener() {

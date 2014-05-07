@@ -154,7 +154,14 @@
             android:name="com.orient.MissonOne"
              android:screenOrientation="portrait"
             android:label="@string/app_name" ></activity>
-           
+           <activity 
+            android:name="com.test.TestActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+           <activity 
+            android:name="com.orient.TeamInfoActivity"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
     </application>
    
 </manifest>

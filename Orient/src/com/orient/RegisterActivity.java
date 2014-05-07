@@ -51,7 +51,7 @@ public class RegisterActivity extends Activity {
 					Toast.makeText(context, "注册成功", 
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent();
-					intent.setClass(RegisterActivity.this, HomeActivity.class);
+					intent.setClass(RegisterActivity.this, LoginActivity.class);
 					startActivity(intent);
 					finish();
 				}
