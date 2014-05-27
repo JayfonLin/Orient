@@ -3,12 +3,16 @@
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+
 import com.baidu.mapapi.map.ItemizedOverlay;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
-public class setRouteOverlay extends ItemizedOverlay<OverlayItem>{  
+public class setRouteOverlay extends ItemizedOverlay<OverlayItem>  implements Parcelable{  
     //用MapView构造ItemizedOverlay
 	static Drawable mark;
 	static MapView mapView;
@@ -17,7 +21,43 @@ public class setRouteOverlay extends ItemizedOverlay<OverlayItem>{
         this.mark = mark;
     	this.mapView = mapView;
     }  
-
+    public setRouteOverlay(){
+    	super(mark, mapView);
+    }
+    @Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		int length = this.size();
+		dest.writeInt(length);
+		for (int i = 0; i < length; i++) {
+			dest.writeInt(this.getItem(i).getPoint().getLatitudeE6());
+			dest.writeInt(this.getItem(i).getPoint().getLongitudeE6());
+		}
+	}  
+	public static final Parcelable.Creator<setRouteOverlay> CREATOR = new Creator<setRouteOverlay>(){
+		public setRouteOverlay createFromParcel(Parcel source){
+			setRouteOverlay route = new setRouteOverlay();
+			int length = source.readInt();
+			for (int i = 0; i < length; i++){
+				GeoPoint point = new GeoPoint(source.readInt(), source.readInt()); //纬度，经度
+				OverlayItem missionItem;
+				if (0 == i){
+					missionItem = new OverlayItem(point, "gettogetherpos", "gettogetherpos");
+				}
+				missionItem = new OverlayItem(point, "mission", "mission");
+				route.addItem(missionItem);
+			}
+			
+			return route;
+		}
+		public setRouteOverlay[] newArray(int size){
+			return new setRouteOverlay[size];
+		}
+	};
     protected boolean onTap(final int index) {  
         //在此处理item点击事件  
     	OverlayItem tmp = getItem(index);

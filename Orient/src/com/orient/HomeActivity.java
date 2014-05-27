@@ -1,19 +1,35 @@
 ﻿package com.orient;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.security.auth.PrivateCredentialPermission;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import com.baidu.mapapi.map.LocationData;
+import com.baidu.platform.comapi.basestruct.GeoPoint;
+import com.constant.Constant;
+import com.network.GetRoomList;
+import com.network.PostPosition;
 import com.orient.R.id;
 import com.test.TestActivity;
+import com.util.Location;
+import com.util.ParseRoomList;
+import com.util.Room;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences.Editor;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View.OnClickListener;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -41,6 +57,7 @@ public class HomeActivity extends Activity implements OnTouchListener
     private LinearLayout content;
     private LinearLayout.LayoutParams menuParams;
     private LinearLayout.LayoutParams contentParams;
+    GlobalVarApplication gva; 
     private int rightEdge = 0;
     // menu完全显示时，留给content的宽度值。
     private static final int menuPadding = 250;
@@ -60,6 +77,72 @@ public class HomeActivity extends Activity implements OnTouchListener
     Button menuHomeButton;
     ImageButton createRoomImageButton;
     private long exitTime = 0;
+    //private List<Integer> roomids;
+    private List<Room> rooms;
+    private Handler getRoomListHandler = new Handler(){
+    	@Override
+    	public void handleMessage(Message msg){
+    		Bundle bundle = msg.getData();
+    		String status = bundle.getString("status", "no status");
+    		String info = bundle.getString("info", "no info");
+    		String roomlist = bundle.getString("Roomlist", "no room list");
+    		switch(msg.what){
+			case Constant.NETWORK_SUCCESS_MESSAGE_TAG:
+				if (status.equalsIgnoreCase("succeed")){
+					try {
+						rooms = ParseRoomList.parseRoomList(roomlist);
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (XmlPullParserException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					show();
+				} else if (status.equalsIgnoreCase("failed")){
+					if (info.equalsIgnoreCase("not login")){
+						Toast.makeText(getApplicationContext(), "尚未登录", 
+								Toast.LENGTH_SHORT).show();
+					}else{
+						Toast.makeText(getApplicationContext(), "未知错误", 
+								Toast.LENGTH_SHORT).show();
+					}
+				}
+				break;
+			case Constant.NETWORK_FAILED_MESSAGE_TAG:
+				Toast.makeText(getApplicationContext(), "网络连接有错，请稍后再试",
+						Toast.LENGTH_LONG).show();
+				break;
+			default:
+				break;
+			}
+    	}
+    };
+    private Handler positioningHandler = new Handler(){
+    	@Override
+	 	   public void handleMessage(android.os.Message msg){
+	    		
+	    		Bundle bundle = msg.getData();						
+	    		if(bundle.getString("result").equals("location")){
+	    			LocationData locData = new LocationData();  
+	    			  
+	    			locData.latitude = bundle.getDouble("latitude");  
+	    			locData.longitude =  bundle.getDouble("longitude");
+	    			locData.direction = bundle.getFloat("direction");
+	    			
+	    			Log.i("lin", "get location succeed");
+	    			Log.i("lin", "longitude: "+locData.longitude+" latitude: "+locData.latitude);
+	    			Log.i("lin", "address: "+bundle.getString("address"));
+	    			uploadPosition((int)(locData.longitude*1e6), (int)(locData.latitude*1e6));
+	    		}else {
+					Toast.makeText(getApplicationContext(), "努力定位ing...", 2000).show();
+				}
+	    	}
+    };
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,9 +150,11 @@ public class HomeActivity extends Activity implements OnTouchListener
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.home);
-        
+        gva = (GlobalVarApplication)getApplication();
+        //roomids = new ArrayList<Integer>();
+        rooms = new ArrayList<Room>();
+        Location.positioning(getApplicationContext(), positioningHandler, true);
         listView = (ListView) this.findViewById(R.id.home_listView);
-        show();
         
         //测试代码，后期可去掉
         Button testBtn = (Button) findViewById(R.id.testButton);
@@ -156,6 +241,60 @@ public class HomeActivity extends Activity implements OnTouchListener
 		});
        showMenu(!mIsShow);
     }
+    
+    public boolean uploadPosition(int pLongitude, int pLatitude){
+    	final Handler handler2 = new Handler(){
+    		
+    		@Override
+    		public void handleMessage(Message msg){
+    			Bundle bundle = msg.getData();
+    			String status = bundle.getString("status");
+    			String info = bundle.getString("info", "no info");
+    			switch(msg.what){
+    			case Constant.NETWORK_SUCCESS_MESSAGE_TAG:
+    				if (status.equalsIgnoreCase("succeed")) {
+System.out.println("get room list");
+    					GetRoomList g = new GetRoomList(gva.httpClient, getRoomListHandler);
+    					new Thread(g).start();
+    				}else if (status.equalsIgnoreCase("failed")){
+    					if (info.equalsIgnoreCase("not login")){
+    						Toast.makeText(getApplicationContext(), "尚未登录", 
+    								Toast.LENGTH_SHORT).show();
+    					}else{
+    						Toast.makeText(getApplicationContext(), "未知错误", Toast.LENGTH_LONG).show();
+    					}
+    				}else{
+    					Toast.makeText(getApplicationContext(), "未知错误", Toast.LENGTH_LONG).show();
+    				}
+    				break;
+    			case Constant.NETWORK_FAILED_MESSAGE_TAG:
+    				Log.i("lin", "经纬度暂时不能上传");
+    				break;
+    			default:
+    				break;
+    			}
+    		
+    		}
+    	};
+    	Handler handler3 = new Handler(){
+
+    		@Override
+    		public void handleMessage(Message msg){
+    			Bundle bundle = msg.getData();						
+	    		if(bundle.getString("result").equals("succeed")){
+	    			String addr = bundle.getString("address");
+	    			Log.i("lin", "addr: "+addr);
+	    		}else {
+					Toast.makeText(getApplicationContext(), "努力转换地址信息ing...", 2000).show();
+				}
+    		
+    		}
+    	};
+    	PostPosition p = new PostPosition(gva.httpClient, handler2, pLongitude, pLatitude);
+    	new Thread(p).start();
+    	Location.reverseGeocode(getApplicationContext(), handler3, pLongitude, pLatitude);
+    	return true;
+    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event)
@@ -217,81 +356,26 @@ public class HomeActivity extends Activity implements OnTouchListener
     }
     
     private void show() {
-    	 String[] mFrom = new String[]{"image","username","roomname","point","time","button","number","routeid"};
+    	 String[] mFrom = new String[]{"image","username","roomname","point","time","button","number"};
          int[] mTo = new int[]{R.id.home_item_image,R.id.home_item_username,R.id.home_item_roomname,R.id.home_item_point,
-        		 R.id.home_item_time,R.id.home_item_button,R.id.home_item_number,R.id.routeid};
-         SQLApi sqlapi = new SQLApi(getApplicationContext());
-         ArrayList<HashMap<String, Object>> dataList = sqlapi.queryRoute();
+        		 R.id.home_item_time,R.id.home_item_button,R.id.home_item_number};
+         
          ArrayList<HashMap<String, Object>> mList = new ArrayList<HashMap<String,Object>>();
-         for ( int i = 0; i < dataList.size(); i++ ) {
-         	HashMap<String,Object> mMap = new HashMap<String,Object>();
-         	
-         	if ( i % 6 == 0) {
- 	        	mMap.put("image", R.drawable.pic_2);
- 	        	mMap.put("username", "Jackie");
- 	        	mMap.put("point", "广州大学城中山大学图书馆");
- 	        	mMap.put("roomname", dataList.get(i).get("roomname"));
- 	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
- 	        	mMap.put("time", dataList.get(i).get("date"));
- 	        	mMap.put("routeid", dataList.get(i).get("Routeid").toString());
- 	        	if (i== 0) {
- 	        		mMap.put("button", R.drawable.joined);
- 	        	} else {
- 	        		mMap.put("button", R.drawable.join);
- 	        	}
- 	        	
-         	} else if ( i % 6 == 1 ) {
-         		
-         		mMap.put("image", R.drawable.pic_3);
- 	        	mMap.put("username", "David");
- 	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "广州大学城中二横路");
- 	        	mMap.put("roomname", dataList.get(i).get("roomname"));
- 	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
- 	        	mMap.put("time", dataList.get(i).get("date"));
- 	        	mMap.put("routeid", dataList.get(i).get("Routeid").toString());
-         	} else if ( i % 6 == 2 ) {
-         		
-         		mMap.put("image", R.drawable.photo_loly);
- 	        	mMap.put("username", "虾米");
- 	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "广州大学城内环东路");
- 	        	mMap.put("roomname", dataList.get(i).get("roomname"));
- 	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
- 	        	mMap.put("time", dataList.get(i).get("date"));
- 	        	mMap.put("routeid", dataList.get(i).get("Routeid").toString());
-         	} else if ( i % 6 == 3 ) {
-         		
-         		mMap.put("image", R.drawable.photo3);
- 	        	mMap.put("username", "Ryan");
- 	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "广州大学城华南理工");
- 	        	mMap.put("roomname", dataList.get(i).get("roomname"));
- 	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
- 	        	mMap.put("time", dataList.get(i).get("date"));
- 	        	mMap.put("routeid", dataList.get(i).get("Routeid").toString());
-         	} else if ( i % 6 == 4 ) {
-         		
-         		mMap.put("image", R.drawable.photo3);
- 	        	mMap.put("username", "大头");
- 	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "广州海珠区中山大学");
- 	        	mMap.put("roomname", dataList.get(i).get("roomname"));
- 	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
- 	        	mMap.put("time", dataList.get(i).get("date"));
- 	        	mMap.put("routeid", dataList.get(i).get("Routeid").toString());
-         	} else {
-         		
-         		mMap.put("image", R.drawable.photo1);
- 	        	mMap.put("username", "偲偲");
- 	        	mMap.put("button", R.drawable.join);
- 	        	mMap.put("point", "广州天河区车陂路");
- 	        	mMap.put("roomname", dataList.get(i).get("roomname"));
- 	        	mMap.put("number", dataList.get(i).get("numpergroup").toString());
- 	        	mMap.put("time", dataList.get(i).get("date"));
- 	        	mMap.put("routeid", dataList.get(i).get("Routeid").toString());
-         	}
-         	mList.add(mMap);
+         for (int i = 0; i < rooms.size(); i++){
+        	 HashMap<String,Object> mMap = new HashMap<String,Object>();
+        	 Room room = rooms.get(i);
+        	 mMap.put("image", R.drawable.photo6);
+        	 mMap.put("username", room.getFounderName());
+        	 if (gva.curRoomId == room.getRoomid()){
+         		 mMap.put("button", R.drawable.joined);
+         	 }else{
+         		 mMap.put("button", R.drawable.join);
+         	 }
+         	 mMap.put("point", room.getAddress()+" "+room.getDistance());
+         	 mMap.put("roomname", room.getRoomName());
+         	 mMap.put("number", String.valueOf(room.getMembers()));
+         	 mMap.put("time", room.getTime());
+         	 mList.add(mMap);
          }
          lvButtonAdapter mAdapter = new lvButtonAdapter(this,mList,R.layout.home_item,mFrom,mTo);
          listView.setAdapter(mAdapter);
@@ -316,26 +400,29 @@ public class HomeActivity extends Activity implements OnTouchListener
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				//arg0.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-				
+
 				Intent intent = new Intent();
-				TextView roomNameTextView = (TextView)arg1.findViewById(R.id.home_item_roomname);
+				Bundle bundle = new Bundle();
+				bundle.putParcelable("com.util.Room", rooms.get(arg2));
+				intent.putExtras(bundle);
+				/*TextView roomNameTextView = (TextView)arg1.findViewById(R.id.home_item_roomname);
 				intent.putExtra("roomName", roomNameTextView.getText().toString());
-				String routeidString = ((TextView)arg1.findViewById(R.id.routeid)).getText().toString();
-				//System.out.println("ayjsfgdjasgdjsadgjsadjadjasgdhjsa"+routeidString);
-				intent.putExtra("Routeid", routeidString);
-				intent.setClass(HomeActivity.this, GameMap.class);
+				TextView pointTextView = (TextView)arg1.findViewById(R.id.home_item_point);
+				intent.putExtra("point", pointTextView.getText().toString());
+				TextView timeTextView = (TextView)arg1.findViewById(R.id.home_item_time);
+				intent.putExtra("time", timeTextView.getText().toString());
+				String roomid = ((TextView)arg1.findViewById(R.id.roomid)).getText().toString();
+				intent.putExtra("roomid", roomid);
+				String maxMem = ((TextView) arg1.findViewById(R.id.home_item_number)).getText().toString();
+				intent.putExtra("maxMem", maxMem);*/
+				intent.setClass(HomeActivity.this, RoomNew.class);
 				startActivity(intent);
 				finish();
 			}
         	 
 		});
     }
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        // TODO Auto-generated method stub
-//        super.onListItemClick(l, v, position, id);
-//        l.getItemAtPosition(position);
-//    }
+
    
     public class lvButtonAdapter extends BaseAdapter {
         private class buttonViewHolder {
@@ -346,7 +433,6 @@ public class HomeActivity extends Activity implements OnTouchListener
             TextView appTime;
             ImageButton button;
             TextView appNumber;
-            TextView routeidTextView;
         }
         
         private ArrayList<HashMap<String, Object>> mAppList;
@@ -400,7 +486,6 @@ public class HomeActivity extends Activity implements OnTouchListener
                 holder.appTime = (TextView)convertView.findViewById(valueViewID[4]);
                 holder.button = (ImageButton)convertView.findViewById(valueViewID[5]);
                 holder.appNumber = (TextView)convertView.findViewById(valueViewID[6]);
-                holder.routeidTextView = (TextView)convertView.findViewById(valueViewID[7]);
                 convertView.setTag(holder);
             }
             
@@ -414,40 +499,18 @@ public class HomeActivity extends Activity implements OnTouchListener
                 String aTime = (String) appInfo.get(keyString[4]);
                 int buttonId = (Integer)appInfo.get(keyString[5]);
                 String aNumber = (String) appInfo.get(keyString[6]);
-                String routeidString = (String) appInfo.get(keyString[7]);
                 holder.appUserName.setText(aUserName);
                 holder.appRoomName.setText(aRoomName);
                 holder.appPoint.setText(aPoint);
                 holder.appTime.setText(aTime);
                 holder.appNumber.setText(aNumber);
-                holder.routeidTextView.setText(routeidString);
                 holder.appView.setImageDrawable(holder.appView.getResources().getDrawable(viewId));
                 holder.button.setImageDrawable(holder.button.getResources().getDrawable(buttonId));
-//                holder.button.setOnClickListener( new lvButtonListener(position));
+
             }         
             return convertView;
         }
-        class lvButtonListener implements View.OnClickListener {
-            private int position;
-
-            lvButtonListener(int pos) {
-                position = pos;
-            }
-            
-            public void onClick(View v) {
-                int vid=v.getId();
-                if (vid == holder.button.getId()) {
-                	Intent intent = new Intent();
-                	//System.out.println( "gtedhtrhy"+mAppList.get(position).get("roomname").toString());
-                	intent.putExtra("Routeid", mAppList.get(position).get("routeid").toString());
-					intent.putExtra("roomName", mAppList.get(position).get("roomname").toString());
-					intent.setClass(HomeActivity.this, GameMap.class);
-					startActivity(intent);
-					finish();
-                }
-
-            }
-        }
+      
     }
 }
 

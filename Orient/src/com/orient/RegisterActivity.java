@@ -2,6 +2,7 @@
 
 import com.constant.Constant;
 import com.network.Register;
+import com.network.Register;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,9 +40,12 @@ public class RegisterActivity extends Activity {
 		@Override
 		public void handleMessage(Message msg){
 			dialog.cancel();
+			Bundle bundle = msg.getData();
+			String status = bundle.getString("status", "no status");
+			
 			switch(msg.what){
 			case Constant.NETWORK_SUCCESS_MESSAGE_TAG:
-				if (msg.obj.equals("success")) {
+				if (status.equalsIgnoreCase("success")) {
 					SharedPreferences sharePreferences = getSharedPreferences(
 							Constant.USER_SHAREDPREFERENCE, MODE_PRIVATE);
 					Editor editor = sharePreferences.edit();
@@ -55,7 +59,7 @@ public class RegisterActivity extends Activity {
 					startActivity(intent);
 					finish();
 				}
-				else if (msg.obj.equals("email used")){
+				else if (status.equalsIgnoreCase("email used")){
 					Toast.makeText(context, "用户名已被注册", 
 							Toast.LENGTH_LONG).show();
 					userNameEt.requestFocus();
@@ -127,7 +131,8 @@ public class RegisterActivity extends Activity {
 					return;
 				}
 				GlobalVarApplication gva = (GlobalVarApplication)getApplication();
-				new Register(mHandler, gva.httpClient).check(userName, pw, nickName, phoneNumber, gender);
+				Register register = new Register(gva.httpClient, mHandler, userName, pw, nickName, phoneNumber, gender);
+				new Thread(register).start();
 				//显示进度条对话框
 				dialog.show();
 				

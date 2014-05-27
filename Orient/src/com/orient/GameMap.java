@@ -2,6 +2,7 @@
 
 import com.orient.widget.MultiDirectionSlidingDrawer;
 import com.orient.R;
+import com.util.Location;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -61,8 +62,8 @@ public class GameMap extends Activity implements Runnable{
 	private Button memberButton;
 	private String roomNameString;
 	private TextView roomNameTextView;
-	public LocationClient mLocationClient = null;
-	public BDLocationListener myListener;
+	/*public LocationClient mLocationClient = null;
+	public BDLocationListener myListener;*/
 	private Menu mainMenu;
 	int missionnum;
 	ArrayList<GeoPoint> missionList;
@@ -123,7 +124,7 @@ public class GameMap extends Activity implements Runnable{
 		mMapController=mMapView.getController();  
 		// 得到mMapView的控制权,可以用它控制和驱动平移和缩放  
 		context = this;
-		myListener = new MyLocationListener();
+		//myListener = new MyLocationListener(handler);
 		Drawable mark = getResources().getDrawable(R.drawable.myposition_big_shine);
 		myposOverlay = new MyLocationOverlay(mMapView);
 		myposOverlay.setMarker(mark);
@@ -143,10 +144,10 @@ public class GameMap extends Activity implements Runnable{
 		missionList = new ArrayList<GeoPoint>();
 		missionList = sqlApi.queryMissions(routeid);
 		
-		mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
+/*		mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
 		mLocationClient.setAK("90ehkP9tBULpKYG8rbwXffjG");
 	    mLocationClient.registerLocationListener( myListener );    //注册监听函数
-		
+*/		
 	    missionnum = missionList.size()-1;
 	    
 	    backHomeButton = (Button)findViewById(R.id.back_home);
@@ -364,7 +365,7 @@ public class GameMap extends Activity implements Runnable{
 	@Override
 	protected void onStart() {
 		
-		LocationClientOption option = new LocationClientOption();
+		/*LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true);
 		option.setAddrType("all");//返回的定位结果包含地址信息
 		option.setCoorType("bd09ll");//返回的定位结果是百度经纬度,默认值gcj02
@@ -387,7 +388,7 @@ public class GameMap extends Activity implements Runnable{
 		}else{
 			if (mLocationClient != null && mLocationClient.isStarted())
 				mLocationClient.requestOfflineLocation();
-		}
+		}*/
 		
 		handler = new Handler(){
 	    	@Override
@@ -412,7 +413,7 @@ public class GameMap extends Activity implements Runnable{
 				}
 	    	}
 	    };
-		
+	    Location.positioning(getApplicationContext(), handler, false); //定位
 		
 //		GeoPoint point =new GeoPoint((int)(23.066667* 1E6),(int)(113.397542* 1E6)); 
 //		OverlayItem myposItem = new OverlayItem(point, "mypos", "mypos");
@@ -453,7 +454,7 @@ public class GameMap extends Activity implements Runnable{
 	                mBMapMan.destroy();  
 	                mBMapMan=null;  
 	        }  
-	        mLocationClient.stop();
+	        //mLocationClient.stop();
 	        super.onDestroy();  
 	}  
 	@Override  

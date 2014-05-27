@@ -2,11 +2,13 @@
 import android.R.integer;
 import android.app.Activity;  
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.res.Configuration;  
 import android.location.LocationManager;
 import android.os.Bundle;  
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;  
 import android.view.Window;
 import android.widget.Toast;
@@ -27,10 +29,14 @@ import com.baidu.mapapi.map.MyLocationOverlay;
 import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.constant.Constant;
+import com.network.CreateRoom;
 import com.network.InsertRoute;
+import com.util.Location;
+import com.util.Room;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -58,7 +64,131 @@ public class Room_Second_1_2 extends Activity {
 	public LocationClient mLocationClient = null;
 	int numpergroup;
 	String date;
+	Room room;
+	private ProgressDialog dialog;
+	GlobalVarApplication gva; 
+	private Handler insertRouteHandler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+            Bundle bundle = msg.getData();
+            String status = bundle.getString("status", "no status");
+            String info = bundle.getString("info", "no info");
+            String routeid = bundle.getString("RouteId", "no route id");
+			switch(msg.what){
+			case Constant.NETWORK_SUCCESS_MESSAGE_TAG:
+				if (status.equalsIgnoreCase("succeed")){
+					gva.playRouteId = Integer.parseInt(routeid);
+					Log.i("lin", "Remote Route Id: "+gva.playRouteId);
+					room.setRouteid(gva.playRouteId);
+					CreateRoom cr = new CreateRoom(gva.httpClient, createRoomHandler,
+							room.getLocation().getLongitude(),room.getLocation().
+							getLatitude(), room.getRoomName(), room.getMaxMem(),
+							room.getTime(), room.getRouteid(), room.getAddress());
+					new Thread(cr).start();
+				}else if (status.equalsIgnoreCase("failed")){
+					if (info.equalsIgnoreCase("not login")){
+						dialog.cancel();
+						Toast.makeText(getApplicationContext(), "尚未登录", Toast.LENGTH_SHORT).show();
+					}else if (info.equalsIgnoreCase("point should be paired by lat and long")){
+						dialog.cancel();
+						Toast.makeText(getApplicationContext(), "上传的位置错误", Toast.LENGTH_SHORT).show();
+					}else {
+						dialog.cancel();
+						Toast.makeText(getApplicationContext(), "未知错误", Toast.LENGTH_SHORT).show();
+					}
+				}
+				else{
+					dialog.cancel();
+					Toast.makeText(getApplicationContext(), "未知错误", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case Constant.NETWORK_FAILED_MESSAGE_TAG:
+				Toast.makeText(context, "网络有错", Toast.LENGTH_LONG).show();
+				break;
+			default:
+				break;
+			}
+			super.handleMessage(msg);
+		}
+		
+	};
+	private Handler createRoomHandler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			dialog.cancel();
+			Bundle bundle = msg.getData();
+			String status = bundle.getString("status", "no status");
+			String info = bundle.getString("info", "no info");
+			String roomid = bundle.getString("RoomId", "no room id");
+			
+			switch(msg.what){
+			case Constant.NETWORK_SUCCESS_MESSAGE_TAG:
+				if (status.equalsIgnoreCase("succeed")){
+					Log.i("lin", "room id: "+roomid);
+					gva.curRoomId = Integer.parseInt(roomid);
+					Log.i("lin", "cur room id: "+gva.curRoomId);
+					Toast.makeText(context, "成功上传", Toast.LENGTH_LONG).show();
+					Intent backIntent = new Intent();
+					backIntent.setClass(Room_Second_1_2.this, HomeActivity.class);
+					Bundle locbundle = new Bundle();
+					bundle.putParcelable("com.util.Room", room);
+					bundle.putParcelable("com.orient.setRouteOverlay", gettogetherOverlay);
+					backIntent.putExtras(locbundle);
+			        startActivity(backIntent);
+			        finish();
+				}else if (status.equalsIgnoreCase("failed")){
+					if (info.equalsIgnoreCase("not login")){
+						Toast.makeText(context, "未登陆", Toast.LENGTH_LONG).show();
+					} else if (info.equalsIgnoreCase("in game")){
+						Toast.makeText(context, "正在游戏中", Toast.LENGTH_LONG).show();
+						Intent intent = new Intent();
+						intent.setClass(Room_Second_1_2.this, GameMap.class);
+						startActivity(intent);
+						finish();
+					} else if (info.equalsIgnoreCase("in room")){
+						Toast.makeText(context, "正在房间中", Toast.LENGTH_LONG).show();
+						Intent intent = new Intent();
+						intent.setClass(Room_Second_1_2.this, RoomNew.class);
+						startActivity(intent);
+						finish();
+					}else{
+						Toast.makeText(context, "未知错误", Toast.LENGTH_LONG).show();
+					}
+				}
+				else{
+					Toast.makeText(context, "未知错误", Toast.LENGTH_LONG).show();
+				}
+				break;
+			case Constant.NETWORK_FAILED_MESSAGE_TAG:
+				Toast.makeText(context, "创建房间： 网络连接有错，请稍后再试",
+						Toast.LENGTH_LONG).show();
+				break;
+			default:
+				break;
+			}
+		}
+		
+	};
 	
+	Handler reverseGeoHandler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg){
+			Bundle bundle = msg.getData();						
+    		if(bundle.getString("result").equals("succeed")){
+    			String addr = bundle.getString("address");
+    			Log.i("lin", "addr: "+addr);
+    			room.setAddress(addr);
+    			InsertRoute ir = new InsertRoute(gva.httpClient, insertRouteHandler, gettogetherOverlay, addr);
+    			new Thread(ir).start();
+    		}else {
+				Toast.makeText(getApplicationContext(), "努力转换地址信息ing...", 2000).show();
+			}
+		
+		}
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -68,14 +198,9 @@ public class Room_Second_1_2 extends Activity {
 		mBMapMan=new BMapManager(getApplication());  
 		mBMapMan.init("Kbe7fy7M05PhdOboeeRkkibv", null);
 		setContentView(R.layout.room_second_1_2);
-		
-		//传递房间名字
+		gva = (GlobalVarApplication)getApplication();
 		Intent intent = getIntent();
-		roomNameString = intent.getStringExtra("roomName");
-		numpergroup = intent.getIntExtra("numpergroup",0);
-		date = intent.getStringExtra("date");
-		
-		//System.out.println("yyyyyyyyyyyyy"+roomNameString+numpergroup+date);
+		room = (Room)intent.getParcelableExtra("com.util.Room");
 		
 		mMapView=(MapView)findViewById(R.id.bmapsView);  
 		mMapView.setBuiltInZoomControls(false);  
@@ -103,6 +228,26 @@ public class Room_Second_1_2 extends Activity {
 		isgettogetherposset = false;
 		mMapController.setZoom(18);//设置地图zoom级别
 		mMapController.setOverlooking(-37);
+		
+		dialog = new ProgressDialog(context);
+        //设置进度条风格，风格为圆形，旋转的
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        //设置ProgressDialog标题
+        dialog.setTitle("信息");
+        //设置ProgressDialog提示信息
+        dialog.setMessage("正在上传信息");
+        //设置ProgressDialg的进度条是否不明确
+        dialog.setIndeterminate(false);
+        //设置ProgressDialog是否可以按退回键取消
+        dialog.setCancelable(true);
+        //设置ProgressDialog的一个Button
+        dialog.setButton("返回", new DialogInterface.OnClickListener(){
+        	public void onClick(DialogInterface pDialog, int i){
+        		//点击，取消对话框
+        		dialog.cancel();
+        		
+        	}
+        });
 		
 		MKMapTouchListener mapTouchListener = new MKMapTouchListener(){  
 	        @Override  
@@ -157,19 +302,7 @@ public class Room_Second_1_2 extends Activity {
 	        }  
 	    };  
 	    mMapView.regMapTouchListner(mapTouchListener);  
-	    
-	    //“上一步”按钮会导致页面混乱，所以已经去掉，代码暂时不改动
-//		back = (ImageButton) findViewById(R.id.Back);
-//		back.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View arg0) {
-//				// TODO Auto-generated method stub
-//				Intent backIntent = new Intent();
-//				backIntent.setClass(Room_Second_1_2.this, Room_Second_1.class);
-//		        startActivity(backIntent);
-//			}
-//		});
+
 		next = (ImageButton) findViewById(R.id.Next);
 		next.setOnClickListener(new OnClickListener() {
 			
@@ -184,16 +317,15 @@ public class Room_Second_1_2 extends Activity {
 				gettogetherOverlay.addItem(missionOverlay.getAllItem());
 				//missionOverlay.addItem(gettogetherOverlay.getItem(0));
 				sqlApi.insertRoute(gettogetherOverlay,roomNameString,numpergroup,date);
-				GlobalVarApplication gva = (GlobalVarApplication)getApplication();
-				gva.uploadRoute = gettogetherOverlay;
-				new InsertRoute(gva.uploadRoute, gva.getRemoteIdHandler, gva.httpClient);
-				Intent backIntent = new Intent();
-				backIntent.putExtra("roomName", roomNameString);
-				int routeid = sqlApi.maxrouteid();
-				backIntent.putExtra("Routeid", routeid);
-				backIntent.setClass(Room_Second_1_2.this, Room_Second_2.class);
-		        startActivity(backIntent);
-		        //finish();
+				com.util.Location location = new com.util.Location(
+						gettogetherOverlay.getItem(0).getPoint().getLongitudeE6(),
+						gettogetherOverlay.getItem(0).getPoint().getLatitudeE6()
+						);
+				room.setLocation(location);
+				dialog.show();
+				Location.reverseGeocode(getApplicationContext(), reverseGeoHandler, 
+						location.getLongitude(), location.getLatitude());
+		        
 			}
 		});
 		
@@ -202,7 +334,6 @@ public class Room_Second_1_2 extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(Room_Second_1_2.this, HomeActivity.class);
 				startActivity(intent);
@@ -285,10 +416,7 @@ public class Room_Second_1_2 extends Activity {
 				}
 			}
 		});
-		
-		
-		
-		
+
 //		GeoPoint point =new GeoPoint((int)(23.066667* 1E6),(int)(113.397542* 1E6)); 
 //		OverlayItem myposItem = new OverlayItem(point, "mypos", "mypos");
 //		myposOverlay.removeAll();

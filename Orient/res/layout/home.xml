@@ -148,7 +148,7 @@
 		    <ImageView
 		        android:id="@+id/background"
 		        android:layout_width="match_parent"
-		        android:layout_height="130dp"
+		        android:layout_height="wrap_content"
 		        android:scaleType="fitXY"
 		        android:src="@drawable/upbackground"
 		        android:contentDescription="@string/app_name" />

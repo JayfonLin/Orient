@@ -2,6 +2,8 @@
 
 import com.baidu.location.r;
 import com.constant.Constant;
+import com.network.GetRoomInfo;
+import com.network.Login;
 import com.network.Login;
 import com.network.Register;
 
@@ -16,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -36,31 +39,75 @@ public class LoginActivity extends Activity {
 	private long exitTime = 0;
 	private ProgressDialog dialog;
 	SharedPreferences sharePreferences;
-	private final Handler mHandler = new Handler(){
+	GlobalVarApplication gva;
+	private Handler getRoomInfoHandler = new Handler(){
+		@Override
+    	public void handleMessage(Message msg){
+    		Bundle bundle = msg.getData();
+    		
+			Intent intent = new Intent();
+			intent.setClass(LoginActivity.this, RoomNew.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+			finish();
+		}
+	};
+	private final Handler handler = new Handler(){
 		
 		@Override
 		public void handleMessage(Message msg){
 			dialog.cancel();
+			Bundle bundle = msg.getData();
+			String status = bundle.getString("status", "no status");
+			String info = bundle.getString("info", "no info");
+			String roomid = bundle.getString("RoomId", "no room id");
 			switch(msg.what){
 			case Constant.NETWORK_SUCCESS_MESSAGE_TAG:
-				if (msg.obj.equals("success")) {
+				
+				if (status.equalsIgnoreCase("succeed")) {
 					Editor editor = sharePreferences.edit();
 					editor.putString(Constant.SHAREDPREFERENCE_KEY_USERNAME, userName);
 					editor.putString(Constant.SHAREDPREFERENCE_KEY_PASSWORD, pw);
 					editor.commit();
 					Toast.makeText(context, "登录成功", 
 							Toast.LENGTH_SHORT).show();
-					Intent intent = new Intent();
-					intent.setClass(LoginActivity.this, HomeActivity.class);
-					startActivity(intent);
-					finish();
-				}else if (msg.obj.equals("not exists")){
+					if (info.equalsIgnoreCase("ok")){
+						
+						Intent intent = new Intent();
+						intent.setClass(LoginActivity.this, HomeActivity.class);
+						startActivity(intent);
+						finish();
+					}else if (info.equalsIgnoreCase("in room")){
+						Toast.makeText(context, "正在房间中", 
+								Toast.LENGTH_SHORT).show();
+						int room_id_num = Integer.parseInt(roomid);
+						gva.curRoomId = room_id_num;
+						GetRoomInfo gri = new GetRoomInfo(gva.httpClient, getRoomInfoHandler, room_id_num);
+						new Thread(gri).start();
+					}else if (info.equalsIgnoreCase("in game")){
+						Toast.makeText(context, "正在游戏中", 
+								Toast.LENGTH_SHORT).show();
+						Intent intent = new Intent();
+						intent.setClass(LoginActivity.this, GameMap.class);
+						startActivity(intent);
+						finish();
+					}/*else {
+						Intent intent = new Intent();
+						intent.setClass(LoginActivity.this, HomeActivity.class);
+						startActivity(intent);
+						finish();
+					}*/
+					
+				}else if (status.equalsIgnoreCase("not exists")){
 					Toast.makeText(context, "用户名不存在", 
 							Toast.LENGTH_LONG).show();
 					userNameEt.requestFocus();
 					userNameEt.selectAll();
-				}else if (msg.obj.equals("failed")){
+				}else if (status.equalsIgnoreCase("failed")){
 					Toast.makeText(context, "请重新登录", Toast.LENGTH_SHORT).show();
+					Log.i("lin", info);
+				}else{
+					Toast.makeText(context, "未知错误", Toast.LENGTH_SHORT).show();
 				}
 				break;
 			case Constant.NETWORK_FAILED_MESSAGE_TAG:
@@ -89,16 +136,17 @@ public class LoginActivity extends Activity {
 		userName = sharePreferences.getString(Constant.SHAREDPREFERENCE_KEY_USERNAME, "");
 		pw = sharePreferences.getString(Constant.SHAREDPREFERENCE_KEY_PASSWORD, "");
 		userNameEt.setText(userName);
+		gva = (GlobalVarApplication)getApplication(); 
 		pwEt.setText(pw);
 		loginButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				userName = userNameEt.getText().toString();
 				pw = pwEt.getText().toString();
-				GlobalVarApplication gva = (GlobalVarApplication)getApplication(); 
-				new Login(mHandler, gva.httpClient).check(userName, pw);
+				
+				Login login = new Login(gva.httpClient, handler, userName, pw);
+				new Thread(login).start();
 				dialog.show();
 			}
 		});

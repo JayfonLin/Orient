@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title2" >
+
+        <ImageButton
+            android:id="@+id/room_new_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="#000000"
+            android:src="@drawable/home_button" />
+
+        <TextView
+            android:id="@+id/room_new_room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+             android:textColor="#EEEEEE"
+           
+            android:text="房间信息" />
+
+    </RelativeLayout>
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+            <LinearLayout 
+	            android:layout_marginTop="10dp"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dp"
+	            android:orientation="vertical"
+	            >
+	            <Button
+	                
+			        android:id="@+id/exit_room_button"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:background="#ee1133"
+			        android:textColor="#fff"
+			        android:text="退出房间" />
+                
+	            <Button
+			        android:id="@+id/create_team"
+			        android:layout_marginTop="10dp"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:background="#00bb33"
+			        android:textColor="#fff"
+			        android:text="新建队伍" />
+			
+			    <Button
+			        android:id="@+id/start"
+			        android:layout_marginTop="10dp"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:background="#00bb33"
+			        android:textColor="#fff"
+			        android:text="准备" />
+	        </LinearLayout>
+	        
+            <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:orientation="vertical"
+		        android:background="#e2e5e0" >
+
+		        <ImageView
+		            android:id="@+id/imageView1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="6dp"
+		            android:visibility="gone"
+		            android:src="@drawable/room_map_screenshot" />
+		
+		        <RelativeLayout
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="6dp"
+		            android:padding="4dp"
+		            android:background="#ffffff" >
+		
+		            <TextView
+		                android:id="@+id/textView1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:textSize="15sp"
+		                android:textColor="#282828"
+		                android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+		                android:text="集合地点" />
+		
+		            <TextView
+		                android:id="@+id/room_new_start_point"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="中山大学"
+		                android:textColor="#5d5a5a"
+		                android:layout_alignParentRight="true"
+		                android:layout_centerVertical="true"
+		                android:textSize="12sp" />
+		
+		        </RelativeLayout>
+				 <RelativeLayout
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="1dp"
+		            android:padding="4dp"
+		            android:background="#ffffff" >
+		
+		            <TextView
+		                android:id="@+id/textView1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:textSize="15sp"
+		                android:textColor="#282828"
+		                android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+		                android:text="集合时间" />
+		
+		            <TextView
+		                android:id="@+id/room_new_start_time"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="2014-04-20 13:30"
+		                android:textColor="#5d5a5a"
+		                android:layout_alignParentRight="true"
+		                android:layout_centerVertical="true"
+		                android:textSize="12sp" />
+		
+		        </RelativeLayout>
+		        
+		        <RelativeLayout
+		            android:id="@+id/room_info_layout"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="10dp"
+		            android:padding="4dp"
+		            android:background="#ffffff" >
+		
+		            <TextView
+		                android:id="@+id/tv"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:textSize="15sp"
+		                android:textColor="#282828"
+		                android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+		                android:text="每队人数上限" />
+		
+		            <TextView
+		                android:id="@+id/max_member_tv"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="6"
+		                android:textColor="#5d5a5a"
+		                android:layout_alignParentRight="true"
+		                android:layout_centerVertical="true"
+		                android:textSize="15sp" />
+		
+		        </RelativeLayout>
+			</LinearLayout>
+
+	        <LinearLayout
+	            android:id="@+id/myteam_linearLayout"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:background="@drawable/new_border_gray2"
+	            android:layout_marginTop="10dp"
+	            android:orientation="vertical" >
+	
+	            <RelativeLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content" >
+	
+	                <LinearLayout
+	                    android:id="@+id/linearLayout1"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_alignParentLeft="true"
+	                    android:layout_alignParentTop="true" >
+						<TextView
+	                        android:id="@+id/myteam_name_tv"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_marginLeft="5dp"
+	                        android:layout_marginTop="5dp"
+	                        android:text="佳佳"
+	                        android:textAppearance="?android:attr/textAppearanceMedium" />
+	                    
+	                    <EditText
+	                        android:id="@+id/myteam_name_et"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_marginLeft="5dp"
+	                        android:layout_marginTop="5dp"
+	                        android:text="佳佳"
+	                        android:inputType="text"
+	                        android:editable="true"
+	                        android:visibility="gone"
+	                        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	                    <TextView
+	                        android:id="@+id/textView2"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_marginLeft="5dp"
+	                        android:layout_marginTop="5dp"
+	                        android:text="（我的队伍）" />
+	                </LinearLayout>
+	
+	                <ImageView
+	                    android:id="@+id/edit_teamName"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_alignParentRight="true"
+	                    android:layout_alignParentTop="true"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_marginTop="5dp"
+	                    android:src="@android:drawable/ic_menu_edit" />
+	            </RelativeLayout>
+	
+	            <com.orient.MyGridView
+	                android:id="@+id/myteam_gridView"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:columnWidth="65dp"
+	                android:gravity="center"
+	                android:horizontalSpacing="2dp"
+	                android:numColumns="auto_fit"
+	                android:stretchMode="columnWidth"
+	                android:verticalSpacing="2dp" >
+	            </com.orient.MyGridView>
+	        </LinearLayout>
+	        
+	        <com.orient.MyListView
+		        android:id="@+id/other_teams_listView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="10dp"
+		        android:layout_marginBottom="10dp"
+		        android:scrollbars="vertical"
+		        >
+		    </com.orient.MyListView> 
+	    </LinearLayout>
+	</ScrollView>
+</LinearLayout>

@@ -2,16 +2,27 @@
 
 import java.util.Calendar;
 
+import com.constant.Constant;
+import com.network.CreateRoom;
+import com.network.CreateRoom;
+import com.util.Room;
+
 import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -25,6 +36,7 @@ import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class Room_Second_1 extends Activity implements View.OnTouchListener {
 	private ImageButton next;
@@ -34,6 +46,8 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 	private Gallery gallery = null;
 	private EditText roomNameEditText;
 	private String roomNameString;
+	final private Context context = this;
+	GlobalVarApplication gva;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +56,7 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 		SysApplication.getInstance().addActivity(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.room_second_1);
-
-		 
+		gva = (GlobalVarApplication)getApplication();
         etStartTime = (EditText) this.findViewById(R.id.room_create_2_date);       
         etStartTime.setOnTouchListener(this);    
         
@@ -63,26 +76,35 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 			
 			@Override
 			public void onClick(View v) {			
-				Intent intent = new Intent();
-				//把输入的房间名传递到下一个界面
 				roomNameEditText = (EditText)findViewById(R.id.roomName_editText);
 				roomNameString = roomNameEditText.getText().toString();
 				String numString=((EditText)findViewById(R.id.numpergroup)).getText().toString();
-				String date = ((EditText)findViewById(R.id.room_create_2_date)).getText().toString();
+				String dateBuilder = ((EditText)findViewById(R.id.room_create_2_date)).getText().toString();
+				String date = "";
+				date += (dateBuilder.split("年")[0]+"-");
+				dateBuilder = dateBuilder.split("年")[1];
+				date += (dateBuilder.split("月")[0]+"-");
+				dateBuilder = dateBuilder.split("月")[1];
+				date += (dateBuilder.split("日")[0]);
+				dateBuilder = (dateBuilder.split("日")[1]);
+				//date += " ";
+				date += dateBuilder;
+				date += ":00";
+				Log.i("lin", date);
 				if(roomNameString.equals("")||numString.equals("")||date.equals("")){
 					new AlertDialog.Builder(Room_Second_1.this).setMessage("请填写完整").setPositiveButton("确定", null).create().show();
 					return;
 				}
 				int numpergroup = Integer.valueOf(numString).intValue();
-				intent.putExtra("roomName", roomNameString);
-				intent.putExtra("numpergroup", numpergroup);
-				intent.putExtra("date", date);
-		        intent.setClass(Room_Second_1.this, Room_Second_1_2.class);
-		        startActivity(intent);
-		        //finish();
-		        //下面代码是用Tab时候的代码，已经无作用
-//		        View decorView = CreateGroup.createGroup.getLocalActivityManager().startActivity("Room_Second_1_2", intent).getDecorView();
-//		        CreateGroup.createGroup.replaceContentView(decorView);
+
+				Room room = new Room(roomNameString, numpergroup, date);
+				Bundle bundle = new Bundle();
+				bundle.putParcelable("com.util.Room", room);
+				Intent intent = new Intent();
+				intent.setClass(Room_Second_1.this, Room_Second_1_2.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
+				finish();
 			}
 		});
 		
@@ -98,6 +120,26 @@ public class Room_Second_1 extends Activity implements View.OnTouchListener {
 				finish();
 			}
 		});
+		
+		/*dialog = new ProgressDialog(context);
+        //设置进度条风格，风格为圆形，旋转的
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        //设置ProgressDialog标题
+        dialog.setTitle("创建房间");
+        //设置ProgressDialog提示信息
+        dialog.setMessage("正在上传房间信息");
+        //设置ProgressDialg的进度条是否不明确
+        dialog.setIndeterminate(false);
+        //设置ProgressDialog是否可以按退回键取消
+        dialog.setCancelable(true);
+        //设置ProgressDialog的一个Button
+        dialog.setButton("返回", new DialogInterface.OnClickListener(){
+        	public void onClick(DialogInterface pDialog, int i){
+        		//点击，取消对话框
+        		dialog.cancel();
+        		
+        	}
+        });*/
 	}
 	
 	//设置返回键返回主页
