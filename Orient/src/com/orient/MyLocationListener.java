@@ -13,6 +13,9 @@ public class MyLocationListener implements BDLocationListener {
 	public MyLocationListener(Handler pHandler){
 		handler = pHandler;
 	}
+	public MyLocationListener(){
+		this(new Handler());
+	}
     @Override
    public void onReceiveLocation(BDLocation location) {
     	Message msg = new Message();
@@ -40,6 +43,10 @@ public class MyLocationListener implements BDLocationListener {
     	  //GameMap.context.handler.sendMessage(msg);
       }
       
+    }
+    public boolean setHandler(Handler pHandler){
+    	handler = pHandler;
+    	return true;
     }
 public void onReceivePoi(BDLocation poiLocation) {
          if (poiLocation == null){

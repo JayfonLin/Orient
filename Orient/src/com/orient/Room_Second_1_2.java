@@ -67,6 +67,7 @@ public class Room_Second_1_2 extends Activity {
 	Room room;
 	private ProgressDialog dialog;
 	GlobalVarApplication gva; 
+	Location location;
 	private Handler insertRouteHandler = new Handler(){
 
 		@Override
@@ -150,7 +151,7 @@ public class Room_Second_1_2 extends Activity {
 					} else if (info.equalsIgnoreCase("in room")){
 						Toast.makeText(context, "正在房间中", Toast.LENGTH_LONG).show();
 						Intent intent = new Intent();
-						intent.setClass(Room_Second_1_2.this, RoomNew.class);
+						intent.setClass(Room_Second_1_2.this, HomeActivity.class);
 						startActivity(intent);
 						finish();
 					}else{
@@ -176,11 +177,13 @@ public class Room_Second_1_2 extends Activity {
 
 		@Override
 		public void handleMessage(Message msg){
-			Bundle bundle = msg.getData();						
+			Bundle bundle = msg.getData();		
+			Log.i("lin", "reverseGeoHandler");
     		if(bundle.getString("result").equals("succeed")){
     			String addr = bundle.getString("address");
     			Log.i("lin", "addr: "+addr);
     			room.setAddress(addr);
+    			
     			InsertRoute ir = new InsertRoute(gva.httpClient, insertRouteHandler, gettogetherOverlay, addr);
     			new Thread(ir).start();
     		}else {
@@ -195,10 +198,11 @@ public class Room_Second_1_2 extends Activity {
 		super.onCreate(savedInstanceState);
 		SysApplication.getInstance().addActivity(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		mBMapMan=new BMapManager(getApplication());  
-		mBMapMan.init("Kbe7fy7M05PhdOboeeRkkibv", null);
-		setContentView(R.layout.room_second_1_2);
 		gva = (GlobalVarApplication)getApplication();
+		mBMapMan= gva.getBMapManager();  
+		
+		setContentView(R.layout.room_second_1_2);
+		
 		Intent intent = getIntent();
 		room = (Room)intent.getParcelableExtra("com.util.Room");
 		
@@ -313,18 +317,20 @@ public class Room_Second_1_2 extends Activity {
 					new AlertDialog.Builder(context).setMessage("至少设置起始地点和一个关卡").setPositiveButton("确定", null).create().show();
 					return;
 				}
-				SQLApi sqlApi = new SQLApi(getApplicationContext());
+				
 				gettogetherOverlay.addItem(missionOverlay.getAllItem());
 				//missionOverlay.addItem(gettogetherOverlay.getItem(0));
-				sqlApi.insertRoute(gettogetherOverlay,roomNameString,numpergroup,date);
-				com.util.Location location = new com.util.Location(
+				com.util.Location loclocation = new com.util.Location(
 						gettogetherOverlay.getItem(0).getPoint().getLongitudeE6(),
 						gettogetherOverlay.getItem(0).getPoint().getLatitudeE6()
 						);
-				room.setLocation(location);
+				room.setLocation(loclocation);
 				dialog.show();
-				Location.reverseGeocode(getApplicationContext(), reverseGeoHandler, 
-						location.getLongitude(), location.getLatitude());
+				Log.i("lin", "reverseGeoCode..");
+				location = new Location();
+				location.reverseGeocode(getApplicationContext(), reverseGeoHandler, 
+						loclocation.getLongitude(), loclocation.getLatitude(),
+						gva.getMKSearchListener(), gva.getBMapManager());
 		        
 			}
 		});
@@ -363,8 +369,6 @@ public class Room_Second_1_2 extends Activity {
 		if(on){
 			if(mLocationClient != null && mLocationClient.isStarted())
 				mLocationClient.requestLocation();
-//			else 
-//				Toast.makeText(GameMap.context,"在线请求失败，没开GPS？", 2000).show();
 		}else{
 			if (mLocationClient != null && mLocationClient.isStarted())
 				mLocationClient.requestOfflineLocation();
@@ -401,14 +405,12 @@ public class Room_Second_1_2 extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				ContentResolver resolver = context.getContentResolver();
 				Boolean on =Settings.Secure.isLocationProviderEnabled(resolver,LocationManager.GPS_PROVIDER);
 				if(on){
 					if(mLocationClient != null && mLocationClient.isStarted())
 						mLocationClient.requestLocation();
 					else 
-//						Toast.makeText(GameMap.context,"在线请求失败，没开GPS？", 2000).show();
 						Toast.makeText(GameMap.context,"在线请求失败，没开GPS？", Toast.LENGTH_SHORT).show();
 				}else{
 					if (mLocationClient != null && mLocationClient.isStarted())
@@ -432,11 +434,16 @@ public class Room_Second_1_2 extends Activity {
 	@Override  
 	protected void onDestroy(){  
 	        mMapView.destroy();  
-	        if(mBMapMan!=null){  
+	        if (location!=null){
+	        	location.destroy();
+	        	location = null;
+	        }
+	        /*if(mBMapMan!=null){  
 	                mBMapMan.destroy();  
 	                mBMapMan=null;  
-	        }  
+	        } */ 
 	        mLocationClient.stop();
+	        
 	        super.onDestroy();  
 	}  
 	@Override  

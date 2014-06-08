@@ -98,7 +98,8 @@ public class GameMap extends Activity implements Runnable{
     //璇煶
     private Button soundButton;
     private RelativeLayout soundLayout;
-    
+    Location location = new Location();
+    GlobalVarApplication gva;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -107,6 +108,7 @@ public class GameMap extends Activity implements Runnable{
 		mBMapMan=new BMapManager(getApplication());  
 		mBMapMan.init("90ehkP9tBULpKYG8rbwXffjG", null);
 		setContentView(R.layout.game);
+		gva = (GlobalVarApplication) getApplication();
 		//传递房间名字
 		Intent intent = getIntent();
 		roomNameString = intent.getStringExtra("roomName");
@@ -413,7 +415,7 @@ public class GameMap extends Activity implements Runnable{
 				}
 	    	}
 	    };
-	    Location.positioning(getApplicationContext(), handler, false); //定位
+	    location.positioning(getApplicationContext(), handler, gva.getMyLocationListener(), false); //定位
 		
 //		GeoPoint point =new GeoPoint((int)(23.066667* 1E6),(int)(113.397542* 1E6)); 
 //		OverlayItem myposItem = new OverlayItem(point, "mypos", "mypos");

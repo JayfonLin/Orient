@@ -18,9 +18,18 @@ import com.baidu.mapapi.search.MKWalkingRouteResult;
 
 public class MySearchListener implements MKSearchListener {  
 	private Handler handler;
+	int i = 0;
 	public MySearchListener(Handler pHandler){
 		handler = pHandler;
 
+	}
+	public MySearchListener(){
+		this(new Handler());
+	}
+	public boolean setHandler(Handler pHandler){
+		handler = pHandler;
+		Log.i("lin", "set Handler i: "+i++);
+		return true;
 	}
     @Override  
     public void onGetAddrResult(MKAddrInfo result, int iError) {  
@@ -28,6 +37,7 @@ public class MySearchListener implements MKSearchListener {
     	String myresult;
     	Message msg = new Message();
 		Bundle b = new Bundle();
+		Log.i("lin", "onGetAddrResult");
         if (result == null){
         	  myresult="nothing";
   	    	  b.putString("result", myresult);

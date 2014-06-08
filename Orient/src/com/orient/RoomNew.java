@@ -148,11 +148,14 @@ public class RoomNew extends Activity {
 	}
 	private boolean enterRoom(){
 		dialog.setMessage("正在加入房间...");
-		dialog.show();
+		
+		Log.i("lin", "cur room id : "+gva.curRoomId);
 		if (gva.curRoomId == -1){
+			dialog.show();
 			EnterRoom enterroom = new EnterRoom(gva.httpClient, enterRoomHandler,room.getRoomid());
 			new Thread(enterroom).start();
 		}else if (gva.curRoomId != -1 && gva.curRoomId !=  room.getRoomid()){
+			dialog.show();
 			ExitRoom er = new ExitRoom(gva.httpClient, exitEnterRoomHandler);
 			new Thread(er).start();
 		}

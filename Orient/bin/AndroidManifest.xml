@@ -36,7 +36,7 @@
 	
 	
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="12"
         android:targetSdkVersion="18" />
 	<supports-screens android:largeScreens="true"  
             android:normalScreens="true"  
@@ -164,6 +164,10 @@
             android:label="@string/app_name" ></activity>
            <activity 
             android:name="com.orient.RoomNew"
+             android:screenOrientation="portrait"
+            android:label="@string/app_name" ></activity>
+           <activity 
+            android:name="com.orient.RefreshableView"
              android:screenOrientation="portrait"
             android:label="@string/app_name" ></activity>
     </application>

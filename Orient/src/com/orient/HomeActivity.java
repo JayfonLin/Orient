@@ -15,6 +15,7 @@ import com.constant.Constant;
 import com.network.GetRoomList;
 import com.network.PostPosition;
 import com.orient.R.id;
+import com.orient.RefreshableView.PullToRefreshListener;
 import com.test.TestActivity;
 import com.util.Location;
 import com.util.ParseRoomList;
@@ -61,7 +62,7 @@ public class HomeActivity extends Activity implements OnTouchListener
     private int rightEdge = 0;
     // menu完全显示时，留给content的宽度值。
     private static final int menuPadding = 250;
-
+    
     // 分辨率
     private int disPlayWidth;
     DisplayMetrics dm = new DisplayMetrics();
@@ -79,6 +80,9 @@ public class HomeActivity extends Activity implements OnTouchListener
     private long exitTime = 0;
     //private List<Integer> roomids;
     private List<Room> rooms;
+    //下拉刷新列表
+    RefreshableView refreshableView;
+    Location location = new Location();
     private Handler getRoomListHandler = new Handler(){
     	@Override
     	public void handleMessage(Message msg){
@@ -153,8 +157,25 @@ public class HomeActivity extends Activity implements OnTouchListener
         gva = (GlobalVarApplication)getApplication();
         //roomids = new ArrayList<Integer>();
         rooms = new ArrayList<Room>();
-        Location.positioning(getApplicationContext(), positioningHandler, true);
+        location.positioning(getApplicationContext(), positioningHandler, gva.getMyLocationListener(), false);
+        //下拉刷新列表
+        refreshableView = (RefreshableView) findViewById(R.id.refreshable_view);  
         listView = (ListView) this.findViewById(R.id.home_listView);
+        
+        //下拉刷新监听器
+        refreshableView.setOnRefreshListener(new PullToRefreshListener() {  
+            @Override  
+            public void onRefresh() {
+            	
+            	location.positioning(getApplicationContext(), positioningHandler, gva.getMyLocationListener(), false);
+                try {  
+                    Thread.sleep(3000);  
+                } catch (InterruptedException e) {  
+                    e.printStackTrace();  
+                }  
+                refreshableView.finishRefreshing();  
+            }  
+        }, 0);  
         
         //测试代码，后期可去掉
         Button testBtn = (Button) findViewById(R.id.testButton);
@@ -292,7 +313,7 @@ System.out.println("get room list");
     	};
     	PostPosition p = new PostPosition(gva.httpClient, handler2, pLongitude, pLatitude);
     	new Thread(p).start();
-    	Location.reverseGeocode(getApplicationContext(), handler3, pLongitude, pLatitude);
+    	//Location.reverseGeocode(getApplicationContext(), handler3, pLongitude, pLatitude);
     	return true;
     }
 

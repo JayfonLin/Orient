@@ -17,6 +17,15 @@
 	         android:layout_alignParentLeft="true"
 	         android:text="彬彬"
 	         android:textAppearance="?android:attr/textAppearanceMedium" />
+        <ImageView
+             android:id="@+id/edit_teamName"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentTop="true"
+             android:layout_marginRight="5dp"
+             android:layout_marginTop="5dp"
+             android:src="@android:drawable/ic_input_add" />
         
     </RelativeLayout>
     
